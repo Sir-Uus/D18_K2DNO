@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../dist/css/bootstrap.min.css" />
+    <title>Transaksi</title>
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-warning">
+      <div class="container-fluid">
+        <!-- Brand/logo -->
+        <a class="navbar-brand" href="/">Dashboard</a>
+        <!-- Toggler/collapsibe Button -->
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <!-- Navbar links -->
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a class="nav-link" aria-current="page" href="/home">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/produk/">Produk</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active" href="/transaksi/">Transaksi</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/karyawan/">Karyawan</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/investor/">Investor</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/user">User</a>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false"> Dropdown </a>
+              <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <li><a class="dropdown-item" href="#">Action</a></li>
+                <li><a class="dropdown-item" href="#">Another action</a></li>
+                <li><hr class="dropdown-divider" /></li>
+                <li><a class="dropdown-item" href="#">Something else here</a></li>
+              </ul>
+            </li>
+          </ul>
+          <!-- Search form -->
+          <form class="d-flex">
+            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" />
+            <button class="btn btn-outline-success" type="submit">Search</button>
+          </form>
+        </div>
+      </div>
+    </nav>
+
+    <div class="container">
+      <div class="card mt-3 mb-3">
+        <div class="card shadow-mb4">
+          <div class="card-header bg-warning text-light"><h4>Transaksi</h4></div>
+          <div class="card-body">
+            <form action="/transaksi/insert" method="post" id="form-transaksi">
+              <div class="row mb-3">
+                <!-- <div class="col-md-3">
+                  <label for="">ID Transaksi</label>
+                </div> -->
+                <div class="col-md-8">
+                  <input type="hidden" name="id_transaksi" id="id_transaksi" class="form-control" />
+                </div>
+              </div>
+              <div class="row mb-3">
+                <div class="col-md-3">
+                  <label for="">ID Produk</label>
+                </div>
+                <div class="col-md-8">
+                  <input type="number" name="idproduk" id="id_produk" class="form-control" />
+                </div>
+              </div>
+              <div class="row mb-3">
+                <div class="col-md-3">
+                  <label for="">Quantity</label>
+                </div>
+                <div class="col-md-8">
+                  <input type="number" name="quantity" id="quantity" class="form-control" />
+                </div>
+              </div>
+              <div class="row mb-3">
+                <div class="col-md-3 mb-3">
+                  <label for="">Tanggal Transaksi</label>
+                </div>
+                <div class="col-md-8">
+                  <input type="date" name="tanggal" id="tanggal_transaksi" class="form-control" />
+                </div>
+              </div>
+              <div class="row mb-3">
+                <div class="col-md-3">
+                  <label for="">ID Karyawan</label>
+                </div>
+                <div class="col-md-8">
+                  <input type="number" name="hargatotal" id="hargatotal" class="form-control" />
+                </div>
+              </div>
+              <input type="submit" name="submit" id="btn-add" class="btn btn-primary" />
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <table class="table table-striped table-hover">
+        <thead class="text-center">
+          <th>ID Transaksi</th>
+          <th>ID Produk</th>
+          <th>Quantity</th>
+          <th>Tanggal Transaksi</th>
+          <th>Harga Total</th>
+          <th>ID Karyawan</th>
+        </thead>
+        <tbody class="text-center">
+          <% transaksi.forEach(transaksi => { %>
+          <tr>
+            <td><%= transaksi.id %></td>
+            <td><%= transaksi.idproduk %></td>
+            <td><%= transaksi.quantity %></td>
+            <td><%= transaksi.tanggal %></td>
+            <td><%= transaksi.hargatotal %></td>
+            <td><%= transaksi.id_karyawan %></td>
+          </tr>
+          <% }); %>
+        </tbody>
+      </table>
+    </div>
+  </body>
+</html>

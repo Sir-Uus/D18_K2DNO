@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/css/bootstrap.css" />
+    <title>Karyawan</title>
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-warning">
+      <div class="container-fluid">
+        <!-- Brand/logo -->
+        <a class="navbar-brand" href="/">Dashboard</a>
+        <!-- Toggler/collapsibe Button -->
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <!-- Navbar links -->
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a class="nav-link" aria-current="page" href="/home">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/produk">Produk</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/transaksi">Transaksi</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active" href="/karyawan">Karyawan</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/investor">Investor</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/user">User</a>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false"> Dropdown </a>
+              <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <li><a class="dropdown-item" href="#">Action</a></li>
+                <li><a class="dropdown-item" href="#">Another action</a></li>
+                <li><hr class="dropdown-divider" /></li>
+                <li><a class="dropdown-item" href="#">Something else here</a></li>
+              </ul>
+            </li>
+          </ul>
+          <!-- Search form -->
+          <form class="d-flex">
+            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" />
+            <button class="btn btn-outline-success" type="submit">Search</button>
+          </form>
+        </div>
+      </div>
+    </nav>
+
+    <div class="container">
+      <div class="card mt-3 mb-3">
+        <div class="card shadow-mb4">
+          <div class="card-header bg-warning text-light"><h4>Karyawan</h4></div>
+          <div class="card-body">
+            <form action="/karyawan/insert" method="post">
+              <div class="row mb-3">
+                <div class="col-md-8">
+                  <input type="hidden" name="id_karyawan" id="id_karyawan" class="form-control" />
+                </div>
+              </div>
+
+              <div class="row mb-3">
+                <div class="col-md-3">
+                  <label for="">Nama Karyawan</label>
+                </div>
+                <div class="col-md-8">
+                  <input type="text" name="nama_karyawan" id="nama_karyawan" class="form-control" />
+                </div>
+              </div>
+
+              <div class="row mb-3">
+                <div class="col-md-3">
+                  <label for="">Tanggal Lahir</label>
+                </div>
+                <div class="col-md-8">
+                  <input type="text " name="tgl_lahir" id="tgl_lahir" class="form-control" />
+                </div>
+              </div>
+
+              <div class="row mb-3">
+                <div class="col-md-3 mb-3">
+                  <label for="">Jenis Kelamin</label>
+                </div>
+                <div class="col-md-8">
+                  <input type="text" name="jenis_kelamin" id="jenis_kelamin" class="form-control" />
+                </div>
+              </div>
+
+              <div class="row mb-3">
+                <div class="col-md-3 mb-3">
+                  <label for="">Alamat</label>
+                </div>
+                <div class="col-md-8">
+                  <input type="text" name="alamat" id="alamat" class="form-control" />
+                </div>
+              </div>
+
+              <div class="row mb-3">
+                <div class="col-md-3 mb-3">
+                  <label for="">Kontak</label>
+                </div>
+                <div class="col-md-8">
+                  <input type="number" name="noTlp" id="noTlp" class="form-control" />
+                </div>
+              </div>
+
+              <input type="submit" name="submit" id="btn-add" class="btn btn-primary" />
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="card">
+        <div class="card shadow-mb4">
+          <table class="table table-striped table-hover">
+            <thead class="text-center">
+              <th>ID karyawan</th>
+              <th>Nama karyawan</th>
+              <th>Tanggal Lahir</th>
+              <th>Gender</th>
+              <th>Alamat</th>
+              <th>Kontak</th>
+              <th>N/A</th>
+            </thead>
+            <tbody class="text-center">
+              <% karyawans.forEach(karyawan => { %>
+              <tr>
+                <td><%= karyawan.id %></td>
+                <td><%= karyawan.nama_karyawan %></td>
+                <td><%= karyawan.tgl_lahir %></td>
+                <td><%= karyawan.jenis_kelamin %></td>
+                <td><%= karyawan.alamat %></td>
+                <td><%= karyawan.noTlp %></td>
+                <td>
+                  <a href="/karyawan/edit/<%= karyawan.id %>" class="btn btn-primary btn-sm">Edit</a>
+                  <form action="/karyawan/delete/<%= karyawan.id %>" method="post" style="display: inline">
+                    <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                  </form>
+                </td>
+              </tr>
+              <% }); %>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

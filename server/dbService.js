@@ -23,7 +23,7 @@ class DbService {
     return instance ? instance : new DbService();
   }
 
-  // PRODUK Methods
+  // GET ALL=======================================================================================================================
   async getAllProduk() {
     try {
       const response = await new Promise((resolve, reject) => {
@@ -108,7 +108,7 @@ class DbService {
       return [];
     }
   }
-
+  //INSERT========================================================================================================================
   async insertNewProduk(namaproduk, stock, hargasatuan) {
     try {
       const insertId = await new Promise((resolve, reject) => {
@@ -249,7 +249,7 @@ class DbService {
       return null;
     }
   }
-
+  //DELETE=============================================================================================================================
   async deleteKaryawanById(id) {
     try {
       id = parseInt(id, 10);
@@ -321,7 +321,7 @@ class DbService {
       return false;
     }
   }
-
+  //GET===================================================================================================================================
   async getProdukById(id) {
     try {
       id = parseInt(id, 10);
@@ -393,7 +393,7 @@ class DbService {
       return null;
     }
   }
-
+  //UPDATE========================================================================================================================
   async updateProdukById(id, namaproduk, stock, hargasatuan) {
     try {
       id = parseInt(id, 10);
@@ -465,7 +465,7 @@ class DbService {
       return false;
     }
   }
-
+  //TOTAL UNTUK DI DASHBOARD======================================================================================================
   async TotalUser() {
     try {
       const query = "SELECT COUNT(*) AS totalUser FROM data_user";

@@ -387,4 +387,56 @@ app.post("/user/delete/:id", (req, res) => {
   result.then(res.redirect("/user")).catch((err) => console.log(err));
 });
 
+app.get("/api/total-user", (req, res) => {
+  const db = dbService.getDbServiceInstance();
+
+  db.TotalUser()
+    .then((count) => {
+      res.json({ totalUser: count });
+    })
+    .catch((err) => {
+      console.log(err);
+      res.status(500).json({ error: "Internal Server Error" });
+    });
+});
+
+app.get("/api/total-produk", (req, res) => {
+  const db = dbService.getDbServiceInstance();
+
+  db.TotalProduk()
+    .then((count) => {
+      res.json({ totalProduk: count });
+    })
+    .catch((err) => {
+      console.log(err);
+      res.status(500).json({ error: "Internal Server Error" });
+    });
+});
+
+app.get("/api/total-karyawan", (req, res) => {
+  const db = dbService.getDbServiceInstance();
+
+  db.TotalKaryawan()
+    .then((count) => {
+      res.json({ totalKaryawan: count });
+    })
+    .catch((err) => {
+      console.log(err);
+      res.status(500).json({ error: "Internal Server Error" });
+    });
+});
+
+app.get("/api/total-transaksi", (req, res) => {
+  const db = dbService.getDbServiceInstance();
+
+  db.TotalTransaksi()
+    .then((count) => {
+      res.json({ totalTransaksi: count });
+    })
+    .catch((err) => {
+      console.log(err);
+      res.status(500).json({ error: "Internal Server Error" });
+    });
+});
+
 app.listen(process.env.PORT, () => console.log("APP IS RUNNING"));

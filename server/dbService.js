@@ -464,6 +464,70 @@ class DbService {
       return false;
     }
   }
+
+  async TotalUser() {
+    try {
+      const query = "SELECT COUNT(*) AS totalUser FROM data_user";
+      const result = await new Promise((resolve, reject) => {
+        connection.query(query, (err, results) => {
+          if (err) reject(err);
+          resolve(results[0].totalUser);
+        });
+      });
+      return result;
+    } catch (error) {
+      console.error("Error:", error);
+      return null;
+    }
+  }
+
+  async TotalProduk() {
+    try {
+      const query = "SELECT COUNT(*) AS totalProduk FROM dataproduk";
+      const result = await new Promise((resolve, reject) => {
+        connection.query(query, (err, results) => {
+          if (err) reject(err);
+          resolve(results[0].totalProduk);
+        });
+      });
+      return result;
+    } catch (error) {
+      console.error("Error:", error);
+      return null;
+    }
+  }
+
+  async TotalKaryawan() {
+    try {
+      const query = "SELECT COUNT(*) AS totalKaryawan FROM data_karyawan";
+      const result = await new Promise((resolve, reject) => {
+        connection.query(query, (err, results) => {
+          if (err) reject(err);
+          resolve(results[0].totalKaryawan);
+        });
+      });
+      return result;
+    } catch (error) {
+      console.error("Error:", error);
+      return null;
+    }
+  }
+
+  async TotalTransaksi() {
+    try {
+      const query = "SELECT COUNT(*) AS totalTransaksi FROM datatransaksi";
+      const result = await new Promise((resolve, reject) => {
+        connection.query(query, (err, results) => {
+          if (err) reject(err);
+          resolve(results[0].totalTransaksi);
+        });
+      });
+      return result;
+    } catch (error) {
+      console.error("Error:", error);
+      return null;
+    }
+  }
 }
 
 module.exports = DbService;

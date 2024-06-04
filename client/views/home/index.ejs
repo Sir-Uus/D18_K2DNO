@@ -27,7 +27,7 @@
             margin: 20px;
             padding: 20px;
             box-shadow: 0px 0px 15px 5px rgba(0,0,0,0.6);
-            background: #FFC107;
+            background: linear-gradient(to top, #FFC107, #ffffff);
             border-radius: 10px;
             text-align: center;   
             margin-top: 60px;
@@ -43,7 +43,7 @@
             margin-bottom: 10px;
         }
         div .visimisi{
-          background: #FFC107;
+          background: linear-gradient(to top, #FFC107, #ffffff);
           border-radius: 10px;
           box-shadow: 0px 0px 15px 5px rgba(0,0,0,0.5);
           padding-bottom: 30px;
@@ -120,6 +120,19 @@
           font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
         }
         
+        .google-map {
+     padding-bottom: 395px;
+     position: relative;
+      }
+
+      .google-map iframe {
+          height: 425px;
+          width: 100%;
+          border-radius: 10px;
+          left: 0;
+          top: 0;
+          position: absolute;
+      }
     </style>
 </head>
 <body>
@@ -231,8 +244,10 @@
       </script>
       </div>
     </div> 
-    <div class="maps" style="background: #7c4dff;">
-      <h1>halo</h1>
+    <div class="maps" >
+      <div class="google-map">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3951.8979921898313!2d112.05559387502149!3d-7.905724678675363!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e78f799e70de439%3A0x4385a4cc9d38b872!2sToko%20Pak%20Budi!5e0!3m2!1sid!2sid!4v1717480439413!5m2!1sid!2sid" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+      </div>
     </div>
     
     </div>

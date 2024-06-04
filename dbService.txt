@@ -1,0 +1,63 @@
+async TotalPengiriman() {
+    try {
+      const query = "SELECT COUNT(*) AS totalKirim FROM pengiriman";
+      const result = await new Promise((resolve, reject) => {
+        connection.query(query, (err, results) => {
+          if (err) reject(err);
+          resolve(results[0].totalKirim);
+        });
+      });
+      return result;
+    } catch (error) {
+      console.error("Error in TotalPengiriman:", error);
+      return null;
+    }
+  }
+
+  async TotalVendor() {
+    try {
+      const query = "SELECT COUNT(*) AS totalVendor FROM vendor";
+      const result = await new Promise((resolve, reject) => {
+        connection.query(query, (err, results) => {
+          if (err) reject(err);
+          resolve(results[0].totalVendor);
+        });
+      });
+      return result;
+    } catch (error) {
+      console.error("Error in TotalVendor:", error);
+      return null;
+    }
+  }
+
+  async TotalPaket() {
+    try {
+      const query = "SELECT COUNT(*) AS totalPaket FROM paket";
+      const result = await new Promise((resolve, reject) => {
+        connection.query(query, (err, results) => {
+          if (err) reject(err);
+          resolve(results[0].totalPaket);
+        });
+      });
+      return result;
+    } catch (error) {
+      console.error("Error in TotalPaket:", error);
+      return null;
+    }
+  }
+
+  async TotalCustomer() {
+    try {
+      const query = "SELECT COUNT(*) AS totalCustomer FROM customer";
+      const result = await new Promise((resolve, reject) => {
+        connection.query(query, (err, results) => {
+          if (err) reject(err);
+          resolve(results[0].totalCustomer);
+        });
+      });
+      return result;
+    } catch (error) {
+      console.error("Error in TotalCustomer:", error);
+      return null;
+    }
+  }

@@ -1,0 +1,52 @@
+// DASHBOARD
+app.get('/api/total-pengiriman', (req, res) => {
+  const db = dbService.getDbServiceInstance();
+
+  db.TotalPengiriman()
+    .then((count) => {
+      res.json({ totalKirim: count });
+    })
+    .catch((err) => {
+      console.log(err);
+      res.status(500).json({ error: 'Internal Server Error' });
+    });
+});
+
+app.get('/api/total-vendor', (req, res) => {
+  const db = dbService.getDbServiceInstance();
+
+  db.TotalVendor()
+    .then((count) => {
+      res.json({ totalVendor: count });
+    })
+    .catch((err) => {
+      console.log(err);
+      res.status(500).json({ error: 'Internal Server Error' });
+    });
+});
+
+app.get('/api/total-paket', (req, res) => {
+  const db = dbService.getDbServiceInstance();
+
+  db.TotalPaket()
+    .then((count) => {
+      res.json({ totalPaket: count });
+    })
+    .catch((err) => {
+      console.log(err);
+      res.status(500).json({ error: 'Internal Server Error' });
+    });
+});
+
+app.get('/api/total-customer', (req, res) => {
+  const db = dbService.getDbServiceInstance();
+
+  db.TotalCustomer()
+    .then((count) => {
+      res.json({ totalCustomer: count });
+    })
+    .catch((err) => {
+      console.log(err);
+      res.status(500).json({ error: 'Internal Server Error' });
+    });
+});

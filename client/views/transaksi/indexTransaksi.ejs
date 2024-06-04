@@ -68,10 +68,14 @@
               </div>
               <div class="row mb-3">
                 <div class="col-md-3">
-                  <label for="">ID Produk</label>
+                  <label for="produk">Nama Produk</label>
                 </div>
                 <div class="col-md-8">
-                  <input type="number" name="idproduk" id="id_produk" class="form-control" />
+                  <select name="id_produk" id="produk" class="form-control" >
+                    <% produk.forEach(data => { %>
+                      <option value="<%= data.id_produk %>"><%= data.namaproduk %></option>
+                    <% }) %>
+                  </select>
                 </div>
               </div>
               <div class="row mb-3">
@@ -92,10 +96,14 @@
               </div>
               <div class="row mb-3">
                 <div class="col-md-3">
-                  <label for="">ID Karyawan</label>
+                  <label for="karyawan">Nama Karyawan</label>
                 </div>
                 <div class="col-md-8">
-                  <input type="number" name="hargatotal" id="hargatotal" class="form-control" />
+                  <select name="id_karyawan" id="karyawan" class="form-control" >
+                    <% karyawan.forEach(data => { %>
+                      <option value="<%= data.id %>"><%= data.nama_karyawan %></option>
+                    <% }) %>
+                  </select>
                 </div>
               </div>
               <input type="submit" name="submit" id="btn-add" class="btn btn-primary" />

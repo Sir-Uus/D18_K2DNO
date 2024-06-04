@@ -117,24 +117,67 @@ app.get("/transaksi", (req, res) => {
   const db = dbService.getDbServiceInstance();
 
   db.getAllTransaksi()
-    .then((data) => {
-      if (!Array.isArray(data)) {
-        console.log("Error:", data);
-        data = [];
+    .then((dataTransaksi) => {
+      if (!Array.isArray(dataTransaksi)) {
+        console.log("Error:", dataTransaksi);
+        dataTransaksi = [];
       }
-      res.render("transaksi/indexTransaksi", { transaksi: data });
+
+      db.getAllProduk()
+        .then((dataProduk) => {
+          if (!Array.isArray(dataProduk)) {
+            console.log("Error:", dataProduk);
+            dataProduk = [];
+          }
+
+          db.getAllKaryawan()
+            .then((dataKaryawan) => {
+              if (!Array.isArray(dataKaryawan)) {
+                console.log("Error:", dataKaryawan);
+                dataKaryawan = [];
+              }
+
+              res.render("transaksi/indexTransaksi", {
+                transaksi: dataTransaksi,
+                produk: dataProduk,
+                karyawan: dataKaryawan,
+              });
+            })
+            .catch((err) => {
+              console.log(err);
+              res.render("transaksi/indexTransaksi", {
+                transaksi: [],
+                produk: [],
+                karyawan: [],
+              });
+            });
+        })
+        .catch((err) => {
+          console.log(err);
+          res.render("transaksi/indexTransaksi", {
+            transaksi: [],
+            produk: [],
+            karyawan: [],
+          });
+        });
     })
     .catch((err) => {
       console.log(err);
-      res.render("transaksi/indexTransaksi", { transaksi: [] });
+      res.render("transaksi/indexTransaksi", {
+        transaksi: [],
+        produk: [],
+        karyawan: [],
+      });
     });
 });
 
 app.post("/transaksi/insert", (req, res) => {
-  const { idproduk, quantity, tanggal, hargatotal, id_karyawan } = req.body;
+  const { id_produk, quantity, tanggal, id_karyawan } = req.body;
+  console.log(req.body)
+  
   const db = dbService.getDbServiceInstance();
 
-  db.insertNewTransaksi(idproduk, quantity, tanggal, hargatotal, id_karyawan)
+  db.insertNewTransaksi(id_produk, quantity, tanggal, id_karyawan)
     .then((insertedData) => {
       if (insertedData) {
         res.redirect("/transaksi");
@@ -224,7 +267,14 @@ app.post("/karyawan/update/:id", (req, res) => {
   const { nama_karyawan, tgl_lahir, jenis_kelamin, alamat, noTlp } = req.body;
   const db = dbService.getDbServiceInstance();
 
-  db.updateKaryawanById(id, nama_karyawan, tgl_lahir, jenis_kelamin, alamat, noTlp)
+  db.updateKaryawanById(
+    id,
+    nama_karyawan,
+    tgl_lahir,
+    jenis_kelamin,
+    alamat,
+    noTlp
+  )
     .then(res.redirect("/karyawan"))
     .catch((err) => {
       console.log(err);

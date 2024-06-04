@@ -148,6 +148,7 @@ class DbService {
       });
 
       const hargatotal = hargaSatuan * quantity;
+
       const insertId = await new Promise((resolve, reject) => {
         const query = "INSERT INTO datatransaksi (id_produk, quantity, tanggal, hargatotal, id_karyawan) VALUES (?,?,?,?,?);";
         connection.query(query, [id_produk, quantity, tanggal, hargatotal, id_karyawan], (err, result) => {

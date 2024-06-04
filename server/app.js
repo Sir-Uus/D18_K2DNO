@@ -32,6 +32,10 @@ app.set("view engine", "ejs");
 app.get("/home", (req, res) => {
   res.render("home/index");
 });
+
+app.get("/login", (req, res) => {
+  res.render("login/login");
+});
 // PRODUK Table
 app.get("/produk", (req, res) => {
   const db = dbService.getDbServiceInstance();

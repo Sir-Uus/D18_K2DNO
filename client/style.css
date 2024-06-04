@@ -1,0 +1,17 @@
+.border-left-warning{
+    border-left: .25rem solid #f63e3e;
+}
+.border-left-success{
+    border-left: .25rem solid #1cc88a;
+}
+.border-left-primary{
+    border-left: .25rem solid #4e73df;
+}
+.border-left-info{
+    border-left: .25rem solid #36b9cc;
+}
+
+body{
+    background: rgb(255,193,7);
+    background: linear-gradient(0deg, rgba(255,193,7,1) 0%, rgba(255,245,224,1) 81%, rgba(255,245,224,0) 100%);
+}

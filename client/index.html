@@ -1,3 +1,4 @@
+//html
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -6,8 +7,9 @@
     <title>Dashboard</title>
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="style.css">
   </head>
-  <body>
+  <body  style="height: 100vh;">
     <nav class="navbar navbar-expand-lg navbar-light bg-warning">
       <div class="container-fluid">
         <!-- Brand/logo -->
@@ -45,72 +47,79 @@
             <li class="nav-item">
               <a class="nav-link" href="/user">User</a>
             </li>
-            <li class="nav-item">
-              <a class="nav-link" href="/login">logout</a>
-            </li>
           </ul>
         </div>
       </div>
     </nav>
-    <div class="row m-auto mt-4">
-      <div class="col-xl-3 col-md-6 mb-4">
-        <div class="card border-left-success shadow h-100 py-2">
-          <div class="card-body">
-            <div class="row no-gutters align-items-center">
-              <div class="col mr-2">
-                <div class="text-xs font-weight-bold text-success text-uppercase mb-1">Akun User</div>
-                <div class="h5 mb-0 font-weight-bold text-gray-800" id="total-user"></div>
-              </div>
-              <div class="col-auto">
-                <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
+
+    <div class="container mt-5">
+      <div class="dashboard text-center">
+        <h1>Dashboard</h1>
+        <h2>Toko Pak Budi</h2>
+      </div>
+    </div>
+
+    <div class="container m-auto d-flex justify-content-center" style="height: 60%;">
+      <div class="row m-auto">
+        <div class="col-xl-6 col-md-12 mb-4">
+          <div class="card border-left-success shadow h-100 py-2">
+            <div class="card-body">
+              <div class="row no-gutters align-items-center">
+                <div class="col mr-2">
+                  <div class="text-xs font-weight-bold text-success text-uppercase mb-1">Akun User</div>
+                  <div class="h5 mb-0 font-weight-bold text-gray-800" id="total-user"></div>
+                </div>
+                <div class="col-auto">
+                  <i class="fa-solid fa-user fa-2xl" style="color: #DDDFEB;"></i>
+                </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
-
-      <div class="col-xl-3 col-md-6 mb-4">
-        <div class="card border-left-success shadow h-100 py-2">
-          <div class="card-body">
-            <div class="row no-gutters align-items-center">
-              <div class="col mr-2">
-                <div class="text-xs font-weight-bold text-success text-uppercase mb-1">Jumlah Produk</div>
-                <div class="h5 mb-0 font-weight-bold text-gray-800" id="total-produk"></div>
-              </div>
-              <div class="col-auto">
-                <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="col-xl-3 col-md-6 mb-4">
-        <div class="card border-left-success shadow h-100 py-2">
-          <div class="card-body">
-            <div class="row no-gutters align-items-center">
-              <div class="col mr-2">
-                <div class="text-xs font-weight-bold text-success text-uppercase mb-1">jumlah karyawan</div>
-                <div class="h5 mb-0 font-weight-bold text-gray-800" id="total-karyawan"></div>
-              </div>
-              <div class="col-auto">
-                <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
+  
+        <div class="col-xl-6 col-md-12 mb-4">
+          <div class="card border-left-info shadow h-100 py-2">
+            <div class="card-body">
+              <div class="row no-gutters align-items-center">
+                <div class="col mr-2">
+                  <div class="text-xs font-weight-bold text-success text-uppercase mb-1">Jumlah Produk</div>
+                  <div class="h5 mb-0 font-weight-bold text-gray-800" id="total-produk"></div>
+                </div>
+                <div class="col-auto">
+                  <i class="fa-solid fa-cart-plus fa-2xl" style="color: #DDDFEB;"></i>
+                </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
-
-      <div class="col-xl-3 col-md-6 mb-4">
-        <div class="card border-left-success shadow h-100 py-2">
-          <div class="card-body">
-            <div class="row no-gutters align-items-center">
-              <div class="col mr-2">
-                <div class="text-xs font-weight-bold text-success text-uppercase mb-1">Total Transaksi</div>
-                <div class="h5 mb-0 font-weight-bold text-gray-800" id="total-transaksi"></div>
+  
+        <div class="col-xl-6 col-md-12 mb-4">
+          <div class="card border-left-primary shadow h-100 py-2">
+            <div class="card-body">
+              <div class="row no-gutters align-items-center">
+                <div class="col mr-2">
+                  <div class="text-xs font-weight-bold text-success text-uppercase mb-1">Jumlah karyawan</div>
+                  <div class="h5 mb-0 font-weight-bold text-gray-800" id="total-karyawan"></div>
+                </div>
+                <div class="col-auto">
+                  <i class="fa-solid fa-user-group fa-2xl" style="color: #DDDFEB;"></i>
+                </div>
               </div>
-              <div class="col-auto">
-                <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
+            </div>
+          </div>
+        </div>
+  
+        <div class="col-xl-6 col-md-12 mb-4">
+          <div class="card border-left-warning shadow h-100 py-2">
+            <div class="card-body">
+              <div class="row no-gutters align-items-center">
+                <div class="col mr-2">
+                  <div class="text-xs font-weight-bold text-success text-uppercase mb-1">Total Transaksi</div>
+                  <div class="h5 mb-0 font-weight-bold text-gray-800" id="total-transaksi"></div>
+                </div>
+                <div class="col-auto">
+                  <i class="fas fa-clipboard-list fa-2xl" style="color: #DDDFEB;"></i>
+                </div>
               </div>
             </div>
           </div>
@@ -119,5 +128,7 @@
     </div>
     <!-- Bootstrap JS -->
     <script src="index.js"></script>
+    <!-- Font Awesome -->
+    <script src="https://kit.fontawesome.com/c0ad9aaa27.js" crossorigin="anonymous"></script>
   </body>
 </html>

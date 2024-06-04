@@ -127,9 +127,9 @@
           <th>ID Karyawan</th>
         </thead>
         <tbody class="text-center">
-          <% transaksi.forEach(transaksi => { %>
+          <% transaksi.forEach((transaksi,index) => { %>
           <tr>
-            <td><%= transaksi.id %></td>
+            <td><%= index + 1 %></td>
             <td><%= transaksi.idproduk %></td>
             <td><%= transaksi.quantity %></td>
             <td><%= transaksi.tanggal %></td>

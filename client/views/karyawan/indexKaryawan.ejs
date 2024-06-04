@@ -141,9 +141,9 @@
               <th>N/A</th>
             </thead>
             <tbody class="text-center">
-              <% karyawans.forEach(karyawan => { %>
+              <% karyawans.forEach((karyawan,index) => { %>
               <tr>
-                <td><%= karyawan.id %></td>
+                <td><%= index + 1 %></td>
                 <td><%= karyawan.nama_karyawan %></td>
                 <td><%= karyawan.tgl_lahir %></td>
                 <td><%= karyawan.jenis_kelamin %></td>

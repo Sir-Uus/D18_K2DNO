@@ -28,7 +28,10 @@ app.get("/", (req, res) => {
 
 app.set("views", path.join(__dirname, "..", "client", "views"));
 app.set("view engine", "ejs");
-
+//HOME
+app.get("/home", (req, res) => {
+  res.render("home/index");
+});
 // PRODUK Table
 app.get("/produk", (req, res) => {
   const db = dbService.getDbServiceInstance();

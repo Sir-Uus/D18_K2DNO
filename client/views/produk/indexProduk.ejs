@@ -119,9 +119,9 @@
           <th>N/A</th>
         </thead>
         <tbody class="text-center">
-          <% myProduk.forEach(produk => { %>
+          <% myProduk.forEach((produk,index)  => { %>
           <tr>
-            <td><%= produk.id_produk %></td>
+            <td><%= index + 1 %></td>
             <td><%= produk.namaproduk %></td>
             <td><%= produk.stock %></td>
             <td><%= produk.hargasatuan %></td>

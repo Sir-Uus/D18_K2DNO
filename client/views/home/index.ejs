@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>home</title>
+    <link rel="stylesheet" href="../dist/css/bootstrap.min.css" />
+    <title>Sejarah Toko Produk Pak Budi</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(to top, #f7f7f7, #f4f6fa);
+            color: rgb(9, 9, 9);
+
+
+        .wrapper {
+          display: flex;
+          justify-content: center;
+          background: #e7e6ea;
+        }
+        }
+        .container {
+            width: 50%;
+            height: 50%;
+            margin: 20px;
+            padding: 20px;
+            box-shadow: 0px 0px 15px 5px rgba(0,0,0,0.6);
+            background: #FFC107;
+            border-radius: 10px;
+            text-align: center;   
+            margin-top: 60px;
+            margin-bottom: 100px; 
+        }
+        .containerdua {
+            width: 50%;
+            height: 50%;
+            margin: 20px;
+            padding: 20px 10px 30px 1px;
+            text-align: center;
+            margin-top: 40px;
+            margin-bottom: 10px;
+        }
+        div .visimisi{
+          background: #FFC107;
+          border-radius: 10px;
+          box-shadow: 0px 0px 15px 5px rgba(0,0,0,0.5);
+          padding-bottom: 30px;
+          padding-top:  0px;
+        }
+        div .dataanalys{
+          background: #ffffff;
+          border-radius: 10px;
+          box-shadow: 0px 0px 15px 5px rgba(0,0,0,0.5);
+          padding-bottom: 200px;
+          padding-top:  0px;
+          padding-bottom: 30px;
+          margin-top: 30px;
+        }
+
+        div .maps{
+          background: #ffffff;
+          border-radius: 10px;
+          box-shadow: 0px 0px 15px 5px rgba(0,0,0,0.5);
+          padding-bottom: 200px;
+          padding-top:  0px;
+          padding-bottom: 30px;
+          margin-top: 30px;
+        }
+
+
+        div .visi {
+          padding: 20px 50px 0px 50px;
+        }
+
+        div .data {
+          padding : 20px 30px 20px 10px;
+        
+        }
+
+        .visi p {
+          font-size: 15px;
+          /* font-weight: lighter; */
+        }
+      
+        img {
+            max-width: 80%;
+            height: auto;
+            border-radius: 10px;
+            box-shadow: 0px 0px 15px 5px rgba(0,0,0,0.2);
+           
+        }
+        a {
+            display: flex;
+            justify-content: center;
+        }
+        h1, h2 {
+          padding: 0px 50px 0 50px;
+          font-weight: bold;
+            text-align: center;
+            font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+          
+            
+        }
+        #pf {
+            line-height: 1.6;
+            font-family: cursive;
+        };
+        h1 {
+            font-size: 40px;
+            
+        }
+        h2 {
+          /* background-color: #ffffffb3; */
+          margin-left: 10%;
+          margin-right: 10%;
+          border-radius: 10px;
+          font-size: 35px;
+          font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+        }
+        
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-warning">
+        <div class="container-fluid">
+          <!-- Brand/logo -->
+          <a class="navbar-brand" href="/">Dashboard</a>
+          <!-- Toggler/collapsibe Button -->
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <!-- Navbar links -->
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="/home">Home</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/produk">Produk</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/transaksi">Transaksi</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/karyawan">Karyawan</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/investor">Investor</a>
+              </li>
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false"> Dropdown </a>
+                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                  <li><a class="dropdown-item" href="#">Action</a></li>
+                  <li><a class="dropdown-item" href="#">Another action</a></li>
+                  <li><hr class="dropdown-divider" /></li>
+                  <li><a class="dropdown-item" href="#">Something else here</a></li>
+                </ul>
+              </li>
+            </ul>
+            <!-- Search form -->
+            <form class="d-flex">
+              <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" />
+              <button class="btn btn-outline-success" type="submit">Search</button>
+            </form>
+          </div>
+        </div>
+      </nav>
+      <script src="../dist/js/bootstrap.bundle.min.js"></script>
+<div class="wrapper">
+      <div class="container">
+        <h1>Sejarah Toko Produk Pak Budi</h1>
+        <br>
+        <a href="index.html"><img class="wrapper" src="https://i.scdn.co/image/ab67616d0000b273506ee21822b0b8d7d1216852" alt="Foto Toko Produk Pak Budi"></a>
+        <br>
+        <h2>Tentang Toko Kami</h2>
+        <p id="pf">Toko Produk Pak Budi didirikan pada tahun 1990 di Jakarta. Sejak itu, kami telah melayani komunitas lokal dengan berbagai produk berkualitas. Kami bangga menjadi bagian dari sejarah dan budaya lokal. 
+          <br><br>
+          Sejak awal berdirinya, Toko Produk Pak Budi selalu mengedepankan kualitas dan pelayanan. Dalam 30 tahun lebih beroperasi, kami telah melihat banyak perubahan di Jakarta dan selalu berusaha menyesuaikan diri dengan kebutuhan masyarakat. 
+          <br><br>
+          Kami mulai dengan sebuah toko kecil di sudut kota dan sekarang telah berkembang menjadi salah satu toko yang terpercaya dan dikenal banyak orang. Kepercayaan pelanggan adalah prioritas utama kami, dan kami berusaha untuk terus memperbaiki dan meningkatkan pelayanan kami setiap harinya.
+          <br><br>
+          Selain itu, kami juga berkomitmen untuk mendukung ekonomi lokal dengan bermitra dengan banyak pemasok lokal dan memberikan mereka kesempatan untuk tumbuh bersama kami. Inovasi dan adaptasi selalu menjadi bagian dari perjalanan kami, memungkinkan kami untuk tetap relevan dan di depan dalam industri ritel.
+          <br><br>
+          Kami bangga dapat melayani berbagai generasi pelanggan, dari mereka yang mengenal kami sejak awal hingga generasi baru yang terus datang untuk merasakan pengalaman berbelanja yang nyaman dan memuaskan di Toko Produk Pak Budi. Terima kasih atas dukungan Anda selama ini, dan kami berharap dapat terus melayani Anda di masa mendatang.
+          </p>
+    </div>
+
+    <div class="containerdua">
+      <div class="visimisi">
+        <div class="visi">
+        <h1>Visi & Misi</h1>
+        <p>Menjadi toko terpercaya yang menyediakan kebutuhan sehari-hari dengan kualitas terbaik dan pelayanan prima,
+           serta menjadi pilihan utama masyarakat dalam memenuhi kebutuhan rumah tangga dan lainnya.</p>
+           <p>Selalu berinovasi dalam layanan untuk memenuhi harapan pelanggan yang terus berkembang. <br>
+            Menerapkan teknologi terbaru untuk meningkatkan efisiensi dan pengalaman berbelanja. <br>
+            Memastikan setiap produk yang dijual memenuhi standar kesehatan dan keamanan. <br>
+             Memberikan pelayanan yang ramah, cepat, dan tepat kepada setiap pelanggan. <br>
+           Menyediakan informasi yang akurat dan jelas mengenai produk yang dijual. <br>
+           Menyediakan produk berkualitas tinggi dengan harga yang kompetitif. <br>         
+         </p>
+        </div>
+      </div>
+      <div class="dataanalys">
+        <div class="data">
+        <h1>Data Penjualan Toko Pak Budi</h1>
+        <canvas id="myChart"></canvas>
+        <script>
+          // Misalkan Anda memiliki data dari database seperti ini
+          var dataDariDatabase = {
+              labels: ['Januari', 'Februari', 'Maret', 'April', 'Mei'],
+              datasets: [{
+                  label: 'Penjualan',
+                  data: [12, 19, 3, 5, 2],
+                  backgroundColor: 'rgba(75, 192, 192, 0.10)',
+                  borderColor: 'rgba(75, 192, 192, 1)',
+                  borderWidth: 1
+              }]
+          };
+  
+          var ctx = document.getElementById('myChart').getContext('2d');
+          var myChart = new Chart(ctx, {
+              type: 'bar',
+              data: dataDariDatabase,
+              options: {
+                  scales: {
+                      y: {
+                          beginAtZero: true
+                      }
+                  }
+              }
+          });
+      </script>
+      </div>
+    </div> 
+    <div class="maps" style="background: #7c4dff;">
+      <h1>halo</h1>
+    </div>
+    
+    </div>
+</div>
+</body>
+
+
+<footer
+  class="text-center text-lg-start text-white"
+  style="background-color: #1c2331"
+  >
+<section
+     class="d-flex justify-content-between p-4"
+     style="background-color: #FFC107"
+     >
+<div class="me-5">
+<span>Thank you for your visit</span>
+</div>
+<div>
+<a href="" class="text-white me-4">
+  <i class="fab fa-facebook-f"></i>
+</a>
+<a href="" class="text-white me-4">
+  <i class="fab fa-twitter"></i>
+</a>
+<a href="" class="text-white me-4">
+  <i class="fab fa-google"></i>
+</a>
+<a href="" class="text-white me-4">
+  <i class="fab fa-instagram"></i>
+</a>
+<a href="" class="text-white me-4">
+  <i class="fab fa-linkedin"></i>
+</a>
+<a href="" class="text-white me-4">
+  <i class="fab fa-github"></i>
+</a>
+</div>
+</section>
+<section class="">
+<div class="text-center">
+<div class="row mt-3">
+  <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
+    <h6 class="text-uppercase fw-bold">Company name</h6>
+    <hr
+        class="mb-4 mt-0 d-inline-block mx-auto"
+        style="width: 60px; background-color: #7c4dff; height: 2px"
+        />
+    <p>
+      Toko Produk Pak Budi didirikan pada tahun 1990 di Jakarta. Sejak itu, kami telah melayani komunitas lokaldengan berbagai produk berkualitas.Kami bangga menjadi bagian dari sejarah dan budaya lokal.
+    </p>
+  </div>
+  <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4">
+    <h6 class="text-uppercase fw-bold">Content</h6>
+    <hr
+        class="mb-4 mt-0 d-inline-block mx-auto"
+        style="width: 60px; background-color: #7c4dff; height: 2px"
+        />
+    <p>
+      <a href="/produk/" class="text-white">Produk</a>
+    </p>
+    <p>
+      <a href="/transaksi/" class="text-white">Transaksi</a>
+    </p>
+    <p>
+      <a href="/karyawan/" class="text-white">Karyawan</a>
+    </p>
+    <p>
+      <a href="/investor/" class="text-white">Investor</a>
+    </p>
+  </div>
+  <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
+    <h6 class="text-uppercase fw-bold">Work Team</h6>
+    <hr
+        class="mb-4 mt-0 d-inline-block mx-auto"
+        style="width: 60px; background-color: #7c4dff; height: 2px"
+        />
+    <p>
+      Malva
+    </p>
+    <p>
+      Jaki
+    </p>
+    <p>
+      Kamal
+    </p>
+    <p>
+      Daus
+    </p>
+  </div>
+  <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
+    <h6 class="text-uppercase fw-bold">Contact</h6>
+    <hr
+        class="mb-4 mt-0 d-inline-block mx-auto"
+        style="width: 60px; background-color: #7c4dff; height: 2px"
+        />
+    <p><i class="fas fa-home mr-3"></i>Jakarta, ID 10012, JT</p>
+    <p><i class="fas fa-envelope mr-3"></i> TokoBudi@gmail.com</p>
+    <p><i class="fas fa-phone mr-3"></i> +628888888888</p>
+    <p><i class="fas fa-print mr-3"></i> +628888888888</p>
+  </div>
+</div>
+</div>
+</section>
+<div
+ class="text-center p-3"
+ style="background-color: rgba(0, 0, 0, 0.2)"
+ >
+© 2024 Copyright:
+KelompokDua</a
+>
+</div>
+</footer>
+</html>

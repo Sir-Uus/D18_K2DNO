@@ -8,13 +8,7 @@
         <form action="/karyawan/update/<%= karyawan.id %>" method="post">
           <div class="row mb-3">
             <div class="col-md-8">
-              <input
-                type="hidden"
-                name="id_karyawan"
-                id="id_karyawan"
-                class="form-control"
-                value="<%= karyawan.id %>"
-              />
+              <input type="hidden" name="id_karyawan" id="id_karyawan" class="form-control" value="<%= karyawan.id %>" />
             </div>
           </div>
 
@@ -23,13 +17,7 @@
               <label for="">Nama Karyawan</label>
             </div>
             <div class="col-md-8">
-              <input
-                type="text"
-                name="nama_karyawan"
-                id="nama_karyawan"
-                class="form-control"
-                value="<%= karyawan.nama_karyawan %>"
-              />
+              <input type="text" name="nama_karyawan" id="nama_karyawan" class="form-control" value="<%= karyawan.nama_karyawan %>" />
             </div>
           </div>
 
@@ -38,13 +26,7 @@
               <label for="">Tanggal Lahir</label>
             </div>
             <div class="col-md-8">
-              <input
-                type="date "
-                name="tgl_lahir"
-                id="tgl_lahir"
-                class="form-control"
-                value="<%= karyawan.tgl_lahir %>"
-              />
+              <input type="date " name="tgl_lahir" id="tgl_lahir" class="form-control" value="<%= karyawan.tgl_lahir %>" />
             </div>
           </div>
 
@@ -53,13 +35,7 @@
               <label for="">Jenis Kelamin</label>
             </div>
             <div class="col-md-8">
-              <input
-                type="text"
-                name="jenis_kelamin"
-                id="jenis_kelamin"
-                class="form-control"
-                value="<%= karyawan.jenis_kelamin %>"
-              />
+              <input type="text" name="jenis_kelamin" id="jenis_kelamin" class="form-control" value="<%= karyawan.jenis_kelamin %>" />
             </div>
           </div>
 
@@ -68,13 +44,7 @@
               <label for="">Alamat</label>
             </div>
             <div class="col-md-8">
-              <input
-                type="text"
-                name="alamat"
-                id="alamat"
-                class="form-control"
-                value="<%= karyawan.alamat %>"
-              />
+              <input type="text" name="alamat" id="alamat" class="form-control" value="<%= karyawan.alamat %>" />
             </div>
           </div>
 
@@ -83,22 +53,11 @@
               <label for="">Kontak</label>
             </div>
             <div class="col-md-8">
-              <input
-                type="text"
-                name="noTlp"
-                id="noTlp"
-                class="form-control"
-                value="<%= karyawan.noTlp %>"
-              />
+              <input type="text" name="noTlp" id="noTlp" class="form-control" value="<%= karyawan.noTlp %>" />
             </div>
           </div>
 
-          <input
-            type="submit"
-            name="submit"
-            id="btn-add"
-            class="btn btn-primary"
-          />
+          <input type="submit" name="submit" id="btn-add" class="btn btn-primary" />
         </form>
       </div>
     </div>

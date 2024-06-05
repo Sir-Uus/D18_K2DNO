@@ -8,12 +8,7 @@
         <form action="/karyawan/insert" method="post">
           <div class="row mb-3">
             <div class="col-md-8">
-              <input
-                type="hidden"
-                name="id_karyawan"
-                id="id_karyawan"
-                class="form-control"
-              />
+              <input type="hidden" name="id_karyawan" id="id_karyawan" class="form-control" />
             </div>
           </div>
 
@@ -22,12 +17,7 @@
               <label for="">Nama Karyawan</label>
             </div>
             <div class="col-md-8">
-              <input
-                type="text"
-                name="nama_karyawan"
-                id="nama_karyawan"
-                class="form-control"
-              />
+              <input type="text" name="nama_karyawan" id="nama_karyawan" class="form-control" />
             </div>
           </div>
 
@@ -36,12 +26,7 @@
               <label for="">Tanggal Lahir</label>
             </div>
             <div class="col-md-8">
-              <input
-                type="date"
-                name="tgl_lahir"
-                id="tgl_lahir"
-                class="form-control"
-              />
+              <input type="date" name="tgl_lahir" id="tgl_lahir" class="form-control" />
             </div>
           </div>
 
@@ -53,8 +38,8 @@
               <select name="jenis_kelamin" id="role" class="form-select">
                 <option value=""></option>
                 s
-                <option value="Laki-laki">Laki-laki</option>
-                <option value="Perempuan">Perempuan</option>
+                <option value="L">Laki-laki</option>
+                <option value="P">Perempuan</option>
               </select>
             </div>
           </div>
@@ -64,12 +49,7 @@
               <label for="">Alamat</label>
             </div>
             <div class="col-md-8">
-              <input
-                type="text"
-                name="alamat"
-                id="alamat"
-                class="form-control"
-              />
+              <input type="text" name="alamat" id="alamat" class="form-control" />
             </div>
           </div>
 
@@ -78,21 +58,11 @@
               <label for="">Kontak</label>
             </div>
             <div class="col-md-8">
-              <input
-                type="number"
-                name="noTlp"
-                id="noTlp"
-                class="form-control"
-              />
+              <input type="number" name="noTlp" id="noTlp" class="form-control" />
             </div>
           </div>
 
-          <input
-            type="submit"
-            name="submit"
-            id="btn-add"
-            class="btn btn-primary"
-          />
+          <input type="submit" name="submit" id="btn-add" class="btn btn-primary" />
         </form>
       </div>
     </div>
@@ -122,19 +92,9 @@
             <td><%= karyawan.alamat %></td>
             <td><%= karyawan.noTlp %></td>
             <td>
-              <a
-                href="/karyawan/edit/<%= karyawan.id %>"
-                class="btn btn-primary btn-sm"
-                >Edit</a
-              >
-              <form
-                action="/karyawan/delete/<%= karyawan.id %>"
-                method="post"
-                style="display: inline"
-              >
-                <button type="submit" class="btn btn-danger btn-sm">
-                  Delete
-                </button>
+              <a href="/karyawan/edit/<%= karyawan.id %>" class="btn btn-primary btn-sm">Edit</a>
+              <form action="/karyawan/delete/<%= karyawan.id %>" method="post" style="display: inline">
+                <button type="submit" class="btn btn-danger btn-sm">Delete</button>
               </form>
             </td>
           </tr>

@@ -5,24 +5,13 @@
     <div class="card shadow-mb4">
       <div class="card-header bg-warning text-light"><h4>Produk</h4></div>
       <div class="card-body">
-        <form
-          action="/user/update/<%= user.id %>"
-          method="post"
-          id="form-produk"
-        >
+        <form action="/user/update/<%= user.id %>" method="post" id="form-produk">
           <div class="row mb-3">
             <!-- <div class="col-md-3">
                   <label for="">ID produk</label>
                 </div> -->
             <div class="col-md-8">
-              <input
-                type="hidden"
-                name="id"
-                id="id"
-                class="form-control"
-                value="<%= user.id %>"
-                readonly
-              />
+              <input type="hidden" name="id" id="id" class="form-control" value="<%= user.id %>" readonly />
             </div>
           </div>
           <div class="row mb-3">
@@ -30,13 +19,7 @@
               <label for="">Nama</label>
             </div>
             <div class="col-md-8">
-              <input
-                type="text"
-                name="nama"
-                id="nama"
-                class="form-control"
-                value="<%= user.nama %>"
-              />
+              <input type="text" name="nama" id="nama" class="form-control" value="<%= user.nama %>" />
             </div>
           </div>
           <div class="row mb-3">
@@ -44,13 +27,7 @@
               <label for="">username </label>
             </div>
             <div class="col-md-8">
-              <input
-                type="number "
-                name="username"
-                id="username"
-                class="form-control"
-                value="<%= user.username %>"
-              />
+              <input type="number " name="username" id="username" class="form-control" value="<%= user.username %>" />
             </div>
           </div>
           <div class="row mb-3">
@@ -58,13 +35,7 @@
               <label for="">Password</label>
             </div>
             <div class="col-md-8">
-              <input
-                type="text"
-                name="password"
-                id="password"
-                class="form-control"
-                value="<%= user.password %>"
-              />
+              <input type="text" name="password" id="password" class="form-control" value="<%= user.password %>" />
             </div>
           </div>
           <div class="row mb-3">
@@ -72,13 +43,7 @@
               <label for="">Kontak</label>
             </div>
             <div class="col-md-8">
-              <input
-                type="text"
-                name="kontak"
-                id="kontak"
-                class="form-control"
-                value="<%= user.kontak %>"
-              />
+              <input type="text" name="kontak" id="kontak" class="form-control" value="<%= user.kontak %>" />
             </div>
           </div>
           <div class="row mb-3">
@@ -89,16 +54,11 @@
               <select name="role" id="role" class="form-select">
                 <option value="">Pilih Role</option>
                 <option value="admin">Admin</option>
-                <option value="karyawan">karyawan</option>
+                <option value="user">User</option>
               </select>
             </div>
           </div>
-          <input
-            type="submit"
-            name="submit"
-            id="btn-add"
-            class="btn btn-primary"
-          />
+          <input type="submit" name="submit" id="btn-add" class="btn btn-primary" />
         </form>
       </div>
     </div>

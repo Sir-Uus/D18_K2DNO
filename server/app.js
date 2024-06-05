@@ -159,11 +159,12 @@ app.post("/produk/insert", checkAuthenticated, mustAdmin, (req, res) => {
 app.get("/produk/edit/:id", checkAuthenticated, mustAdmin, (req, res) => {
   const { id } = req.params;
   const db = dbService.getDbServiceInstance();
+  var userRole = req.session.user.role;
 
   db.getProdukById(id)
     .then((produk) => {
       if (produk) {
-        res.render("produk/updateProduk", { produk });
+        res.render("produk/updateProduk", { produk, role: userRole });
       } else {
         res.status(404).send("error");
       }
@@ -334,11 +335,12 @@ app.post("/karyawan/insert", checkAuthenticated, mustAdmin, (req, res) => {
 app.get("/karyawan/edit/:id", checkAuthenticated, mustAdmin, (req, res) => {
   const { id } = req.params;
   const db = dbService.getDbServiceInstance();
+  var userRole = req.session.user.role;
 
   db.getKaryawanById(id)
     .then((karyawan) => {
       if (karyawan) {
-        res.render("karyawan/updateKaryawan", { karyawan });
+        res.render("karyawan/updateKaryawan", { karyawan, role: userRole });
       } else {
         res.status(404).send("errror");
       }
@@ -410,11 +412,12 @@ app.post("/investor/insert", checkAuthenticated, mustAdmin, (req, res) => {
 app.get("/investor/edit/:id", checkAuthenticated, mustAdmin, (req, res) => {
   const { id } = req.params;
   const db = dbService.getDbServiceInstance();
+  var userRole = req.session.user.role;
 
   db.getInvestorById(id)
     .then((investor) => {
       if (investor) {
-        res.render("investor/updateinvestor", { investor });
+        res.render("investor/updateinvestor", { investor, role: userRole });
       } else {
         res.status(404).send("errror");
       }
@@ -486,11 +489,12 @@ app.post("/user/insert", checkAuthenticated, (req, res) => {
 app.get("/user/edit/:id", checkAuthenticated, (req, res) => {
   const { id } = req.params;
   const db = dbService.getDbServiceInstance();
+  var userRole = req.session.user.role;
 
   db.getUserById(id)
     .then((user) => {
       if (user) {
-        res.render("user/updateuser", { user });
+        res.render("user/updateuser", { user, role: userRole });
       } else {
         res.status(404).send("errror");
       }

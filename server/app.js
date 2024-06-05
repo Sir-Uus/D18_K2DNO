@@ -579,4 +579,38 @@ app.get("/api/total-transaksi", checkAuthenticated, (req, res) => {
     });
 });
 
+app.get("/register", (req, res) => {
+  const db = dbService.getDbServiceInstance();
+  db.getAllUser()
+    .then((data) => {
+      if (!Array.isArray(data)) {
+        console.log("Error:", data);
+        data = [];
+      }
+      res.render("login/register", { users: data });
+    })
+    .catch((err) => {
+      console.log(err);
+      res.render("login/register", { users: [] });
+    });
+});
+
+app.post("/register/insert", (req, res) => {
+  const { nama, username, password, kontak, role } = req.body;
+  const db = dbService.getDbServiceInstance();
+
+  db.insertNewUser(nama, username, password, kontak, role)
+    .then((insertedData) => {
+      if (insertedData) {
+        res.redirect("/");
+      } else {
+        res.status(500).send("gagal!");
+      }
+    })
+    .catch((err) => {
+      console.log(err);
+      res.status(500).send("error");
+    });
+});
+
 app.listen(process.env.PORT, () => console.log("APP IS RUNNING"));

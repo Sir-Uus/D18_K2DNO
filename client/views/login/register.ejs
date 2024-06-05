@@ -1,121 +1,93 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-	<meta charset="utf-8">
-	<meta name="author" content="Muhamad Nauval Azhar">
-	<meta name="viewport" content="width=device-width,initial-scale=1">
-	<meta name="description" content="This is a login page template based on Bootstrap 5">
-	<title>Register | Page</title>
-	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="author" content="Muhamad Nauval Azhar" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="description" content="This is a login page template based on Bootstrap 5" />
+    <title>Register | Page</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl"
+      crossorigin="anonymous"
+    />
 
-	<style>
-		body{
-			width: 100%;
-			height: 100%;
-			--s: 84px;
-			--c1: #ffffff;
-			--c2: #f2f2f2;
-			--c3: #ececec;
+    <style>
+      body {
+        width: 100%;
+        height: 100%;
+        --s: 84px;
+        --c1: #ffffff;
+        --c2: #f2f2f2;
+        --c3: #ececec;
 
-			--_g: 0 120deg, #0000 0;
-			background: conic-gradient(
-				from 0deg at calc(500% / 6) calc(100% / 3),
-				var(--c3) var(--_g)
-				),
-				conic-gradient(
-				from -120deg at calc(100% / 6) calc(100% / 3),
-				var(--c2) var(--_g)
-				),
-				conic-gradient(
-				from 120deg at calc(100% / 3) calc(500% / 6),
-				var(--c1) var(--_g)
-				),
-				conic-gradient(
-				from 120deg at calc(200% / 3) calc(500% / 6),
-				var(--c1) var(--_g)
-				),
-				conic-gradient(
-				from -180deg at calc(100% / 3) 50%,
-				var(--c2) 60deg,
-				var(--c1) var(--_g)
-				),
-				conic-gradient(
-				from 60deg at calc(200% / 3) 50%,
-				var(--c1) 60deg,
-				var(--c3) var(--_g)
-				),
-				conic-gradient(
-				from -60deg at 50% calc(100% / 3),
-				var(--c1) 120deg,
-				var(--c2) 0 240deg,
-				var(--c3) 0
-				);
-			background-size: calc(var(--s) * 1.732) var(--s);
-		}
-	</style>
-</head>
+        --_g: 0 120deg, #0000 0;
+        background: conic-gradient(from 0deg at calc(500% / 6) calc(100% / 3), var(--c3) var(--_g)), conic-gradient(from -120deg at calc(100% / 6) calc(100% / 3), var(--c2) var(--_g)),
+          conic-gradient(from 120deg at calc(100% / 3) calc(500% / 6), var(--c1) var(--_g)), conic-gradient(from 120deg at calc(200% / 3) calc(500% / 6), var(--c1) var(--_g)),
+          conic-gradient(from -180deg at calc(100% / 3) 50%, var(--c2) 60deg, var(--c1) var(--_g)), conic-gradient(from 60deg at calc(200% / 3) 50%, var(--c1) 60deg, var(--c3) var(--_g)),
+          conic-gradient(from -60deg at 50% calc(100% / 3), var(--c1) 120deg, var(--c2) 0 240deg, var(--c3) 0);
+        background-size: calc(var(--s) * 1.732) var(--s);
+      }
+    </style>
+  </head>
 
-<body>
-	<section class="h-100">
-		<div class="container h-100">
-			<div class="row justify-content-sm-center h-100">
-				<div class="col-xxl-4 col-xl-5 col-lg-5 col-md-7 col-sm-9">
-					<div class="text-center my-5">
-						<img src="https://i.postimg.cc/zBnxqX4T/login.png" alt="logo" width="100">
-					</div>
-					<div class="card shadow-lg">
-						<div class="card-body p-5">
-							<h1 class="fs-4 card-title fw-bold mb-4">Register</h1>
-							<form action="/register" method="POST" class="needs-validation" novalidate="" autocomplete="off">
-								<div class="mb-3">
-									<label class="mb-2 text-muted" for="name">Name</label>
-									<input id="name" type="text" class="form-control" name="name" value="" required autofocus>
-									<div class="invalid-feedback">
-										Name is required	
-									</div>
-								</div>
+  <body>
+    <section class="h-100">
+      <div class="container h-100">
+        <div class="row justify-content-sm-center h-100">
+          <div class="col-xxl-4 col-xl-5 col-lg-5 col-md-7 col-sm-9">
+            <div class="text-center my-5">
+              <img src="https://i.postimg.cc/zBnxqX4T/login.png" alt="logo" width="100" />
+            </div>
+            <div class="card shadow-lg">
+              <div class="card-body p-5">
+                <h1 class="fs-4 card-title fw-bold mb-4">Register</h1>
+                <form action="/register/insert" method="POST" class="needs-validation" novalidate="" autocomplete="off">
+                  <div class="mb-3">
+                    <label class="mb-2 text-muted" for="">Name</label>
+                    <input id="name" type="text" class="form-control" name="nama" required autofocus />
+                    <div class="invalid-feedback"></div>
+                  </div>
 
-								<div class="mb-3">
-									<label class="mb-2 text-muted" for="email">E-Mail Address</label>
-									<input id="email" type="email" class="form-control" name="email" value="" required>
-									<div class="invalid-feedback">
-										Email is invalid
-									</div>
-								</div>
+                  <div class="mb-3">
+                    <label class="mb-2 text-muted" for="">Username</label>
+                    <input id="username" type="text" class="form-control" name="username" required />
+                    <div class="invalid-feedback"></div>
+                  </div>
 
-								<div class="mb-3">
-									<label class="mb-2 text-muted" for="password">Password</label>
-									<input id="password" type="password" class="form-control" name="password" required>
-									<div class="invalid-feedback">
-										Password is required
-									</div>
-								</div>
+                  <div class="mb-3">
+                    <label class="mb-2 text-muted" for="">Password</label>
+                    <input id="password" type="password" class="form-control" name="password" required />
+                    <div class="invalid-feedback"></div>
+                  </div>
 
-								<p class="form-text text-muted mb-3">
-									By registering you agree with our terms and condition.
-								</p>
+                  <div class="mb-3">
+                    <label class="mb-2 text-muted" for="">Kontak</label>
+                    <input id="kontak" type="text" class="form-control" name="kontak" required />
+                    <div class="invalid-feedback"></div>
+                  </div>
 
-								<div class="align-items-center d-flex">
-									<button type="submit" class="btn btn-warning ms-auto">
-										Register	
-									</button>
-								</div>
-							</form>
-						</div>
-						<div class="card-footer py-3 border-0">
-							<div class="text-center">
-								Already have an account? <a href="/login" class="text-dark">Login</a>
-							</div>
-						</div>
-					</div>
-					<div class="text-center mt-5 text-muted">
-						Copyright &copy; 2024 &mdash; Budi Company 
-					</div>
-				</div>
-			</div>
-		</div>
-	</section>
+                  <div class="mb-3">
+                    <input id="role" type="hidden" class="form-control" name="role" value="user" required />
+                    <div class="invalid-feedback"></div>
+                  </div>
 
-	<script src="js/login.js"></script>
-</body>
+                  <div class="align-items-center d-flex">
+                    <button type="submit" class="btn btn-warning ms-auto">Register</button>
+                  </div>
+                </form>
+              </div>
+              <div class="card-footer py-3 border-0">
+                <div class="text-center">Already have an account? <a href="/login" class="text-dark">Login</a></div>
+              </div>
+            </div>
+            <div class="text-center mt-5 text-muted">Copyright &copy; 2024 &mdash; Budi Company</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <script src="js/login.js"></script>
+  </body>
 </html>

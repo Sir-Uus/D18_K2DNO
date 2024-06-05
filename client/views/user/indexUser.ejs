@@ -27,12 +27,7 @@
               <label for="">Username</label>
             </div>
             <div class="col-md-8">
-              <input
-                type="text "
-                name="username"
-                id="username"
-                class="form-control"
-              />
+              <input type="text " name="username" id="username" class="form-control" />
             </div>
           </div>
           <div class="row mb-3">
@@ -40,12 +35,7 @@
               <label for="">Password</label>
             </div>
             <div class="col-md-8">
-              <input
-                type="text "
-                name="password"
-                id="password"
-                class="form-control"
-              />
+              <input type="text " name="password" id="password" class="form-control" />
             </div>
           </div>
           <div class="row mb-3">
@@ -53,12 +43,7 @@
               <label for="">Kontak</label>
             </div>
             <div class="col-md-8">
-              <input
-                type="text "
-                name="kontak"
-                id="kontak"
-                class="form-control"
-              />
+              <input type="text " name="kontak" id="kontak" class="form-control" />
             </div>
           </div>
           <div class="row mb-3">
@@ -73,12 +58,7 @@
               </select>
             </div>
           </div>
-          <input
-            type="submit"
-            name="submit"
-            id="btn-add"
-            class="btn btn-primary"
-          />
+          <input type="submit" name="submit" id="btn-add" class="btn btn-primary" />
         </form>
       </div>
     </div>
@@ -104,14 +84,8 @@
         <td><%= user.kontak %></td>
         <td><%= user.role %></td>
         <td>
-          <a href="/user/edit/<%= user.id %>" class="btn btn-primary btn-sm"
-            >Edit</a
-          >
-          <form
-            action="/user/delete/<%= user.id %>"
-            method="post"
-            style="display: inline"
-          >
+          <a href="/user/edit/<%= user.id %>" class="btn btn-primary btn-sm">Edit</a>
+          <form action="/user/delete/<%= user.id %>" method="post" style="display: inline">
             <button type="submit" class="btn btn-danger btn-sm">Delete</button>
           </form>
         </td>

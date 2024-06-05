@@ -529,6 +529,36 @@ class DbService {
       return null;
     }
   }
+
+  async getUserByUsername(username) {
+    try {
+      const response = await new Promise((resolve, reject) => {
+        const query = "SELECT * FROM datauser WHERE username = ?";
+        connection.query(query, [username], (err, results) => {
+          if (err) reject(new Error(err.message));
+          resolve(results[0]);
+        });
+      });
+      return response;
+    } catch (error) {
+      console.log(error);
+      return null;
+    }
+  }
+
+  async validateUser(username, password) {
+    try {
+      const user = await this.getUserByUsername(username);
+      if (!user) {
+        return null;
+      }
+      const isValid = await bcrypt.compare(password, user.password);
+      return isValid ? user : null;
+    } catch (error) {
+      console.log(error);
+      return null;
+    }
+  }
 }
 
 module.exports = DbService;

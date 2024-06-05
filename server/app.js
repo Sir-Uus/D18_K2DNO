@@ -22,12 +22,13 @@ app.get("/js/bootstrap.js", (req, res) => {
   res.sendFile(__dirname + "/node_modules/bootstrap/dist/js/bootstrap.js");
 });
 
-app.get("/", (req, res) => {
-  res.sendFile(path.join(__dirname, "..", "client", "index.html"));
-});
-
 app.set("views", path.join(__dirname, "..", "client", "views"));
 app.set("view engine", "ejs");
+
+app.get("/", (req, res) => {
+  res.render("dashboard/index");
+});
+
 //HOME
 app.get("/home", (req, res) => {
   res.render("home/index");
@@ -179,8 +180,8 @@ app.get("/transaksi", (req, res) => {
 
 app.post("/transaksi/insert", (req, res) => {
   const { id_produk, quantity, tanggal, id_karyawan } = req.body;
-  console.log(req.body)
-  
+  console.log(req.body);
+
   const db = dbService.getDbServiceInstance();
 
   db.insertNewTransaksi(id_produk, quantity, tanggal, id_karyawan)
@@ -273,14 +274,7 @@ app.post("/karyawan/update/:id", (req, res) => {
   const { nama_karyawan, tgl_lahir, jenis_kelamin, alamat, noTlp } = req.body;
   const db = dbService.getDbServiceInstance();
 
-  db.updateKaryawanById(
-    id,
-    nama_karyawan,
-    tgl_lahir,
-    jenis_kelamin,
-    alamat,
-    noTlp
-  )
+  db.updateKaryawanById(id, nama_karyawan, tgl_lahir, jenis_kelamin, alamat, noTlp)
     .then(res.redirect("/karyawan"))
     .catch((err) => {
       console.log(err);

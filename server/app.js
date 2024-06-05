@@ -1,5 +1,7 @@
 const express = require("express");
+//const session = require("express-session");
 const app = express();
+//const bcrypt = require("bcryptjs");
 const path = require("path");
 const cors = require("cors");
 const dotenv = require("dotenv");
@@ -10,6 +12,14 @@ const dbService = require("./dbService");
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
+
+// app.use(
+//   session({
+//     secret: process.env.SESSION_SECRET,
+//     resave: false,
+//     saveUninitialized: false,
+//   })
+// );
 
 // Agar bisa akses file statis dari direktori client
 app.use(express.static(path.join(__dirname, "..", "client")));
@@ -34,9 +44,38 @@ app.get("/home", (req, res) => {
   res.render("home/index");
 });
 
-app.get("/login", (req, res) => {
-  res.render("login/login");
-});
+// const requireLogin = (req, res, next) => {
+//   if (!req.session.userId) {
+//     return res.redirect("/login");
+//   }
+//   next();
+// };
+
+// app.use((req, res, next) => {
+//   if (req.path !== "/login" && req.path !== "/register") {
+//     requireLogin(req, res, next);
+//   } else {
+//     next();
+//   }
+// });
+
+// app.get("/login", (req, res) => {
+//   res.render("login/login");
+// });
+
+// app.post("/login", async (req, res) => {
+//   const { username, password } = req.body;
+//   const db = dbService.getDbServiceInstance();
+//   const user = await db.getUserByUsername(username);
+
+//   if (user && bcrypt.compareSync(password, user.password)) {
+//     req.session.userId = user.id;
+//     res.redirect("/");
+//   } else {
+//     res.json("WRONG ANSWER");
+//   }
+// });
+
 app.get("/register", (req, res) => {
   res.render("login/register");
 });

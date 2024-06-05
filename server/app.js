@@ -59,9 +59,9 @@ app.get("/home", (req, res) => {
 //   }
 // });
 
-// app.get("/login", (req, res) => {
-//   res.render("login/login");
-// });
+app.get("/login", (req, res) => {
+  res.render("login/login");
+});
 
 // app.post("/login", async (req, res) => {
 //   const { username, password } = req.body;

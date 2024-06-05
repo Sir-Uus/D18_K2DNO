@@ -21,6 +21,7 @@
                 <div class="col-md-8">
                   <select name="id_produk" id="produk" class="form-control" >
                     <% produk.forEach(data => { %>
+                      <option value="">Pilih Produk</option>
                       <option value="<%= data.id_produk %>"><%= data.namaproduk %></option>
                     <% }) %>
                   </select>

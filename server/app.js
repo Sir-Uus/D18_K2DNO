@@ -52,6 +52,11 @@ app.use(
   })
 );
 
+app.use((req, res, next) => {
+  req.user = { role: "admin" };
+  next();
+});
+
 function checkAuthenticated(req, res, next) {
   if (req.session && req.session.user) {
     return next();
@@ -104,7 +109,7 @@ app.get("/dashboard", checkAuthenticated, (req, res) => {
 
 //HOME
 app.get("/home", checkAuthenticated, (req, res) => {
-  res.render("home/index");
+  res.render("home/index", {user: req.user});
 });
 
 // PRODUK Table
@@ -117,7 +122,7 @@ app.get("/produk", checkAuthenticated, mustAdmin, (req, res) => {
         console.log("Error:", data);
         data = [];
       }
-      res.render("produk/indexProduk", { myProduk: data });
+      res.render("produk/indexProduk", { myProduk: data, user: req.user });
     })
     .catch((err) => {
       console.log(err);
@@ -212,6 +217,7 @@ app.get("/transaksi", checkAuthenticated, (req, res) => {
                 transaksi: dataTransaksi,
                 produk: dataProduk,
                 karyawan: dataKaryawan,
+                user: req.user
               });
             })
             .catch((err) => {
@@ -289,7 +295,7 @@ app.get("/karyawan", checkAuthenticated, mustAdmin, (req, res) => {
         console.log("Error:", data);
         data = [];
       }
-      res.render("karyawan/indexKaryawan", { karyawans: data });
+      res.render("karyawan/indexKaryawan", { karyawans: data, user: req.user });
     })
     .catch((err) => {
       console.log(err);
@@ -371,7 +377,7 @@ app.get("/investor", checkAuthenticated, mustAdmin, (req, res) => {
         console.log("Error:", data);
         data = [];
       }
-      res.render("investor/indexInvestor", { investors: data });
+      res.render("investor/indexInvestor", { investors: data, user: req.user });
     })
     .catch((err) => {
       console.log(err);
@@ -446,7 +452,7 @@ app.get("/user", checkAuthenticated, (req, res) => {
         console.log("Error:", data);
         data = [];
       }
-      res.render("user/indexUser", { users: data });
+      res.render("user/indexUser", { users: data, user: req.user });
     })
     .catch((err) => {
       console.log(err);

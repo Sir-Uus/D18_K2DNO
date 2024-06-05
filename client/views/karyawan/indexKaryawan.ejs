@@ -78,7 +78,7 @@
                   <label for="">Tanggal Lahir</label>
                 </div>
                 <div class="col-md-8">
-                  <input type="text " name="tgl_lahir" id="tgl_lahir" class="form-control" />
+                  <input type="date" name="tgl_lahir" id="tgl_lahir" class="form-control" />
                 </div>
               </div>
 
@@ -87,7 +87,11 @@
                   <label for="">Jenis Kelamin</label>
                 </div>
                 <div class="col-md-8">
-                  <input type="text" name="jenis_kelamin" id="jenis_kelamin" class="form-control" />
+                  <select name="jenis_kelamin" id="role" class="form-select">
+                    <option value=""></option>s
+                    <option value="Laki-laki">Laki-laki</option>
+                    <option value="Perempuan">Perempuan</option> 
+                  </select>
                 </div>
               </div>
 
@@ -134,7 +138,7 @@
               <tr>
                 <td><%= index + 1 %></td>
                 <td><%= karyawan.nama_karyawan %></td>
-                <td><%= karyawan.tgl_lahir %></td>
+                <td><%= new Date(karyawan.tgl_lahir).toLocaleDateString() %></td>
                 <td><%= karyawan.jenis_kelamin %></td>
                 <td><%= karyawan.alamat %></td>
                 <td><%= karyawan.noTlp %></td>

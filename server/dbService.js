@@ -23,6 +23,27 @@ class DbService {
     return instance ? instance : new DbService();
   }
 
+  async login(username, password) {
+    try {
+        const response = await new Promise((resolve, reject) => {
+        const query = "SELECT * FROM data_user WHERE username = ? AND password = ?";
+        
+        connection.query(query, [username, password], (err, results) => {
+            if (err) reject(new Error(err.message));
+            if (results.length > 0) {
+            resolve(results[0]);
+            } else {
+            resolve(null);
+            }
+        });
+        });
+        return response;
+    } catch (error) {
+        console.log(error);
+        return null;
+    }
+}
+
   // GET ALL=======================================================================================================================
   async getAllProduk() {
     try {

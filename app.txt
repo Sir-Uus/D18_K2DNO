@@ -1,52 +1,88 @@
-// DASHBOARD
-app.get('/api/total-pengiriman', (req, res) => {
-  const db = dbService.getDbServiceInstance();
+const express = require("express");
+const app = express();
+const path = require("path");
+const cors = require("cors");
+const session = require('express-session');
+const bodyParser = require('body-parser');
+const crypto = require('crypto');
+const dotenv = require("dotenv");
+dotenv.config();
 
-  db.TotalPengiriman()
-    .then((count) => {
-      res.json({ totalKirim: count });
-    })
-    .catch((err) => {
-      console.log(err);
-      res.status(500).json({ error: 'Internal Server Error' });
-    });
+const dbService = require("./dbService");
+
+app.use(cors());
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
+
+// Agar bisa akses file statis dari direktori client
+app.use(express.static(path.join(__dirname, "..", "client")));
+
+// Akses Bootstrap
+app.get("/css/bootstrap.css", (req, res) => {
+  res.sendFile(__dirname + "/node_modules/bootstrap/dist/css/bootstrap.css");
+});
+app.get("/js/bootstrap.js", (req, res) => {
+  res.sendFile(__dirname + "/node_modules/bootstrap/dist/js/bootstrap.js");
 });
 
-app.get('/api/total-vendor', (req, res) => {
-  const db = dbService.getDbServiceInstance();
-
-  db.TotalVendor()
-    .then((count) => {
-      res.json({ totalVendor: count });
-    })
-    .catch((err) => {
-      console.log(err);
-      res.status(500).json({ error: 'Internal Server Error' });
-    });
+app.get("/", (req, res) => {
+  res.sendFile(path.join(__dirname, "..", "client", "index.html"));
 });
 
-app.get('/api/total-paket', (req, res) => {
+app.set("views", path.join(__dirname, "..", "client", "views"));
+app.set("view engine", "ejs");
+
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
+
+app.use(session({
+  secret: 'aJw2$wf?I9*2D?#dFfSte@s%td',
+  resave: false,
+  saveUninitialized: true,
+}));
+
+function checkAuthenticated(req, res, next) {
+  if (req.session && req.session.user) {
+      return next();
+  } else {
+      res.redirect('/');
+  }
+}
+
+// LOGIN
+app.post('/login', async (req, res) => {
+  const { username, password } = req.body;
   const db = dbService.getDbServiceInstance();
 
-  db.TotalPaket()
-    .then((count) => {
-      res.json({ totalPaket: count });
-    })
-    .catch((err) => {
-      console.log(err);
-      res.status(500).json({ error: 'Internal Server Error' });
-    });
+  const user = await db.login(username, password);
+  if (user) {
+      const secret = crypto.createHash('md5').update(username).digest('hex');
+
+      req.session.regenerate(err => {
+          if (err) {
+              return res.status(500).send('Session regeneration error');
+          }
+          req.session.secret = secret;
+          req.session.user = user;
+          req.session.save(err => {
+              if (err) {
+                  return res.status(500).send('Session save error');
+              }
+              res.redirect('/dashboard');
+          });
+      });
+  } else {
+      res.status(401).send('Invalid username or password');
+  }
 });
 
-app.get('/api/total-customer', (req, res) => {
-  const db = dbService.getDbServiceInstance();
+// LOGOUT
+app.get('/logout', (req, res) => {
+  req.session.destroy();
+  res.redirect('/');
+});
 
-  db.TotalCustomer()
-    .then((count) => {
-      res.json({ totalCustomer: count });
-    })
-    .catch((err) => {
-      console.log(err);
-      res.status(500).json({ error: 'Internal Server Error' });
-    });
+// dashboard
+app.get('/dashboard', checkAuthenticated, (req, res) => {
+  res.render('dashboard/DashboardIndex', { user: req.session.user });
 });

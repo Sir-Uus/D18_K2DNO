@@ -36,6 +36,12 @@ app.get("/home", (req, res) => {
 app.get("/login", (req, res) => {
   res.render("login/login");
 });
+app.get("/register", (req, res) => {
+  res.render("login/register");
+});
+app.get("/forgot", (req, res) => {
+  res.render("login/forgot");
+});
 // PRODUK Table
 app.get("/produk", (req, res) => {
   const db = dbService.getDbServiceInstance();

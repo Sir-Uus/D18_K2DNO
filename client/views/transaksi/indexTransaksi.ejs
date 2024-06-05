@@ -128,11 +128,16 @@
             <tr>
               <tr>
                 <td><%= index + 1 %></td>
-                <td><%= transaksi.id_produk %></td>
+                <% 
+                  const produkItem = produk.find(p => p.id_produk === transaksi.id_produk);
+                  const karyawanItem = karyawan.find(k => k.id === transaksi.id_karyawan);
+                  const formattedDate = new Date(transaksi.tanggal).toString() !== 'Invalid Date' ? new Date(transaksi.tanggal).toISOString().split('T')[0] : 'Tanggal tidak valid';
+                %>
+                <td><%= produkItem ? produkItem.namaproduk : 'Produk tidak ditemukan' %></td>
                 <td><%= transaksi.quantity %></td>
-                <td><%= transaksi.tanggal %></td>
+                <td><%= formattedDate %></td>
                 <td><%= transaksi.hargatotal %></td>
-                <td><%= transaksi.id_karyawan %></td>
+                <td><%= karyawanItem ? karyawanItem.nama_karyawan : 'Karyawan tidak ditemukan' %></td>
               </tr>
             </tr>
           <% }); %>

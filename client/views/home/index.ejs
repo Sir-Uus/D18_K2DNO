@@ -17,46 +17,46 @@
           justify-content: center;
           /* background: #e7e6ea; */
           width: 100%;
-        height: 100%;
-        --s: 84px;
-        --c1: #ffffff;
-        --c2: #f2f2f2;
-        --c3: #ececec;
+          height: 100%;
+          --s: 84px;
+          --c1: #ffffff;
+          --c2: #f2f2f2;
+          --c3: #ececec;
 
-        --_g: 0 120deg, #0000 0;
-        background: conic-gradient(
-            from 0deg at calc(500% / 6) calc(100% / 3),
-            var(--c3) var(--_g)
-          ),
-          conic-gradient(
-            from -120deg at calc(100% / 6) calc(100% / 3),
-            var(--c2) var(--_g)
-          ),
-          conic-gradient(
-            from 120deg at calc(100% / 3) calc(500% / 6),
-            var(--c1) var(--_g)
-          ),
-          conic-gradient(
-            from 120deg at calc(200% / 3) calc(500% / 6),
-            var(--c1) var(--_g)
-          ),
-          conic-gradient(
-            from -180deg at calc(100% / 3) 50%,
-            var(--c2) 60deg,
-            var(--c1) var(--_g)
-          ),
-          conic-gradient(
-            from 60deg at calc(200% / 3) 50%,
-            var(--c1) 60deg,
-            var(--c3) var(--_g)
-          ),
-          conic-gradient(
-            from -60deg at 50% calc(100% / 3),
-            var(--c1) 120deg,
-            var(--c2) 0 240deg,
-            var(--c3) 0
-          );
-        background-size: calc(var(--s) * 1.732) var(--s);
+          --_g: 0 120deg, #0000 0;
+          background: conic-gradient(
+              from 0deg at calc(500% / 6) calc(100% / 3),
+              var(--c3) var(--_g)
+            ),
+            conic-gradient(
+              from -120deg at calc(100% / 6) calc(100% / 3),
+              var(--c2) var(--_g)
+            ),
+            conic-gradient(
+              from 120deg at calc(100% / 3) calc(500% / 6),
+              var(--c1) var(--_g)
+            ),
+            conic-gradient(
+              from 120deg at calc(200% / 3) calc(500% / 6),
+              var(--c1) var(--_g)
+            ),
+            conic-gradient(
+              from -180deg at calc(100% / 3) 50%,
+              var(--c2) 60deg,
+              var(--c1) var(--_g)
+            ),
+            conic-gradient(
+              from 60deg at calc(200% / 3) 50%,
+              var(--c1) 60deg,
+              var(--c3) var(--_g)
+            ),
+            conic-gradient(
+              from -60deg at 50% calc(100% / 3),
+              var(--c1) 120deg,
+              var(--c2) 0 240deg,
+              var(--c3) 0
+            );
+          background-size: calc(var(--s) * 1.732) var(--s);
         }
       }
       .container {
@@ -135,7 +135,8 @@
         padding: 0px 50px 0 50px;
         font-weight: bold;
         text-align: center;
-        font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande", "Lucida Sans", Arial, sans-serif;
+        font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+          "Lucida Sans", Arial, sans-serif;
       }
       #pf {
         line-height: 1.6;
@@ -150,7 +151,8 @@
         margin-right: 10%;
         border-radius: 10px;
         font-size: 35px;
-        font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande", "Lucida Sans", Arial, sans-serif;
+        font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+          "Lucida Sans", Arial, sans-serif;
       }
 
       .google-map {
@@ -169,72 +171,48 @@
     </style>
   </head>
   <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-warning">
-      <div class="container-fluid">
-        <!-- Brand/logo -->
-        <a class="navbar-brand" href="/">Dashboard</a>
-        <!-- Toggler/collapsibe Button -->
-        <button
-          class="navbar-toggler"
-          type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#navbarSupportedContent"
-          aria-controls="navbarSupportedContent"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
-        >
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <!-- Navbar links -->
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-            <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="/home">Home</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="/produk">Produk</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="/transaksi">Transaksi</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="/karyawan">Karyawan</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="/investor">Investor</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="/user">User</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="/logout">logout</a>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </nav>
+    <%- include('../navbar/navbar') %>
+
     <script src="../dist/js/bootstrap.bundle.min.js"></script>
     <div class="wrapper">
       <div class="container">
         <h1>Sejarah Toko Produk Pak Budi</h1>
         <br />
-        <a href="index.html"><img class="wrapper" src="https://i.scdn.co/image/ab67616d0000b273506ee21822b0b8d7d1216852" alt="Foto Toko Produk Pak Budi" /></a>
+        <a href="index.html"
+          ><img
+            class="wrapper"
+            src="https://i.scdn.co/image/ab67616d0000b273506ee21822b0b8d7d1216852"
+            alt="Foto Toko Produk Pak Budi"
+        /></a>
         <br />
         <h2>Tentang Toko Kami</h2>
         <p id="pf">
-          Toko Produk Pak Budi didirikan pada tahun 1990 di Jakarta. Sejak itu, kami telah melayani komunitas lokal dengan berbagai produk berkualitas. Kami bangga menjadi bagian dari sejarah dan
-          budaya lokal. <br /><br />
-          Sejak awal berdirinya, Toko Produk Pak Budi selalu mengedepankan kualitas dan pelayanan. Dalam 30 tahun lebih beroperasi, kami telah melihat banyak perubahan di Jakarta dan selalu berusaha
-          menyesuaikan diri dengan kebutuhan masyarakat.
+          Toko Produk Pak Budi didirikan pada tahun 1990 di Jakarta. Sejak itu,
+          kami telah melayani komunitas lokal dengan berbagai produk
+          berkualitas. Kami bangga menjadi bagian dari sejarah dan budaya lokal.
           <br /><br />
-          Kami mulai dengan sebuah toko kecil di sudut kota dan sekarang telah berkembang menjadi salah satu toko yang terpercaya dan dikenal banyak orang. Kepercayaan pelanggan adalah prioritas utama
-          kami, dan kami berusaha untuk terus memperbaiki dan meningkatkan pelayanan kami setiap harinya.
+          Sejak awal berdirinya, Toko Produk Pak Budi selalu mengedepankan
+          kualitas dan pelayanan. Dalam 30 tahun lebih beroperasi, kami telah
+          melihat banyak perubahan di Jakarta dan selalu berusaha menyesuaikan
+          diri dengan kebutuhan masyarakat.
           <br /><br />
-          Selain itu, kami juga berkomitmen untuk mendukung ekonomi lokal dengan bermitra dengan banyak pemasok lokal dan memberikan mereka kesempatan untuk tumbuh bersama kami. Inovasi dan adaptasi
-          selalu menjadi bagian dari perjalanan kami, memungkinkan kami untuk tetap relevan dan di depan dalam industri ritel.
+          Kami mulai dengan sebuah toko kecil di sudut kota dan sekarang telah
+          berkembang menjadi salah satu toko yang terpercaya dan dikenal banyak
+          orang. Kepercayaan pelanggan adalah prioritas utama kami, dan kami
+          berusaha untuk terus memperbaiki dan meningkatkan pelayanan kami
+          setiap harinya.
           <br /><br />
-          Kami bangga dapat melayani berbagai generasi pelanggan, dari mereka yang mengenal kami sejak awal hingga generasi baru yang terus datang untuk merasakan pengalaman berbelanja yang nyaman dan
-          memuaskan di Toko Produk Pak Budi. Terima kasih atas dukungan Anda selama ini, dan kami berharap dapat terus melayani Anda di masa mendatang.
+          Selain itu, kami juga berkomitmen untuk mendukung ekonomi lokal dengan
+          bermitra dengan banyak pemasok lokal dan memberikan mereka kesempatan
+          untuk tumbuh bersama kami. Inovasi dan adaptasi selalu menjadi bagian
+          dari perjalanan kami, memungkinkan kami untuk tetap relevan dan di
+          depan dalam industri ritel.
+          <br /><br />
+          Kami bangga dapat melayani berbagai generasi pelanggan, dari mereka
+          yang mengenal kami sejak awal hingga generasi baru yang terus datang
+          untuk merasakan pengalaman berbelanja yang nyaman dan memuaskan di
+          Toko Produk Pak Budi. Terima kasih atas dukungan Anda selama ini, dan
+          kami berharap dapat terus melayani Anda di masa mendatang.
         </p>
       </div>
 
@@ -243,16 +221,24 @@
           <div class="visi">
             <h1>Visi & Misi</h1>
             <p>
-              Menjadi toko terpercaya yang menyediakan kebutuhan sehari-hari dengan kualitas terbaik dan pelayanan prima, serta menjadi pilihan utama masyarakat dalam memenuhi kebutuhan rumah tangga
-              dan lainnya.
+              Menjadi toko terpercaya yang menyediakan kebutuhan sehari-hari
+              dengan kualitas terbaik dan pelayanan prima, serta menjadi pilihan
+              utama masyarakat dalam memenuhi kebutuhan rumah tangga dan
+              lainnya.
             </p>
             <p>
-              Selalu berinovasi dalam layanan untuk memenuhi harapan pelanggan yang terus berkembang. <br />
-              Menerapkan teknologi terbaru untuk meningkatkan efisiensi dan pengalaman berbelanja. <br />
-              Memastikan setiap produk yang dijual memenuhi standar kesehatan dan keamanan. <br />
-              Memberikan pelayanan yang ramah, cepat, dan tepat kepada setiap pelanggan. <br />
-              Menyediakan informasi yang akurat dan jelas mengenai produk yang dijual. <br />
-              Menyediakan produk berkualitas tinggi dengan harga yang kompetitif. <br />
+              Selalu berinovasi dalam layanan untuk memenuhi harapan pelanggan
+              yang terus berkembang. <br />
+              Menerapkan teknologi terbaru untuk meningkatkan efisiensi dan
+              pengalaman berbelanja. <br />
+              Memastikan setiap produk yang dijual memenuhi standar kesehatan
+              dan keamanan. <br />
+              Memberikan pelayanan yang ramah, cepat, dan tepat kepada setiap
+              pelanggan. <br />
+              Menyediakan informasi yang akurat dan jelas mengenai produk yang
+              dijual. <br />
+              Menyediakan produk berkualitas tinggi dengan harga yang
+              kompetitif. <br />
             </p>
           </div>
         </div>

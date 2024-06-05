@@ -2,10 +2,10 @@ const express = require("express");
 const session = require("express-session");
 const app = express();
 //const bcrypt = require("bcryptjs");
-const crypto = require('crypto');
+const crypto = require("crypto");
 const path = require("path");
 const cors = require("cors");
-const bodyParser = require('body-parser');
+const bodyParser = require("body-parser");
 const dotenv = require("dotenv");
 dotenv.config();
 
@@ -34,76 +34,81 @@ app.get("/js/bootstrap.js", (req, res) => {
   res.sendFile(__dirname + "/node_modules/bootstrap/dist/js/bootstrap.js");
 });
 
-app.get("/", (req,res) => {
-  res.sendFile(path.join(__dirname ,"..","client", "/index.html"));
+app.get("/", (req, res) => {
+  res.sendFile(path.join(__dirname, "..", "client", "/index.html"));
 });
 
 app.set("views", path.join(__dirname, "..", "client", "views"));
 app.set("view engine", "ejs");
 
-
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
-app.use(session({
-  secret: 'aJw2$wf?I9*2D?#dFfSte@s%td',
-  resave: false,
-  saveUninitialized: true,
-}));
+app.use(
+  session({
+    secret: "aJw2$wf?I9*2D?#dFfSte@s%td",
+    resave: false,
+    saveUninitialized: true,
+  })
+);
 
 function checkAuthenticated(req, res, next) {
   if (req.session && req.session.user) {
-      return next();
-  } else {
-      res.redirect('/');
+    return next();
   }
+}
+function mustAdmin(req, res, next) {
+  if (req.session && req.session.user.role === "admin") {
+    return next();
+  }
+  res.redirect("/transaksi");
 }
 
 // LOGIN
-app.post('/login', async (req, res) => {
+app.post("/login", async (req, res) => {
   const { username, password } = req.body;
   const db = dbService.getDbServiceInstance();
 
   const user = await db.login(username, password);
   if (user) {
-      const secret = crypto.createHash('md5').update(username).digest('hex');
+    const secret = crypto.createHash("md5").update(username).digest("hex");
 
-      req.session.regenerate(err => {
-          if (err) {
-              return res.status(500).send('Session regeneration error');
-          }
-          req.session.secret = secret;
-          req.session.user = user;
-          req.session.save(err => {
-              if (err) {
-                  return res.status(500).send('Session save error');
-              }
-              res.redirect('/dashboard');
-          });
+    req.session.regenerate((err) => {
+      if (err) {
+        return res.status(500).send("Session regeneration error");
+      }
+      req.session.secret = secret;
+      req.session.user = user;
+      req.session.save((err) => {
+        if (err) {
+          return res.status(500).send("Session save error");
+        }
+        res.redirect("/dashboard");
       });
+    });
   } else {
-      res.status(401).send('Invalid username or password');
+    res.status(401).send("Invalid username or password");
   }
 });
 
 // LOGOUT
-app.get('/logout', (req, res) => {
+app.get("/logout", (req, res) => {
   req.session.destroy();
-  res.redirect('/');
+  res.redirect("/");
 });
 
 // dashboard
-app.get('/dashboard', checkAuthenticated, (req, res) => {
-  res.render('dashboard/index', { user: req.session.user });
+app.get("/dashboard", checkAuthenticated, (req, res) => {
+  res.render("dashboard/index", { user: req.session.user });
 });
 
 //HOME
-app.get("/home",checkAuthenticated, (req, res) => {
+app.get("/home", checkAuthenticated, (req, res) => {
   res.render("home/index");
 });
 
 // PRODUK Table
-app.get("/produk",checkAuthenticated, (req, res) => {
+app.get("/produk", checkAuthenticated, mustAdmin, (req, res) => {
   const db = dbService.getDbServiceInstance();
 
   db.getAllProduk()
@@ -120,7 +125,7 @@ app.get("/produk",checkAuthenticated, (req, res) => {
     });
 });
 
-app.post("/produk/insert",checkAuthenticated, (req, res) => {
+app.post("/produk/insert", checkAuthenticated, mustAdmin, (req, res) => {
   const { namaproduk, stock, hargasatuan } = req.body;
   const db = dbService.getDbServiceInstance();
 
@@ -138,7 +143,7 @@ app.post("/produk/insert",checkAuthenticated, (req, res) => {
     });
 });
 
-app.get("/produk/edit/:id",checkAuthenticated, (req, res) => {
+app.get("/produk/edit/:id", checkAuthenticated, mustAdmin, (req, res) => {
   const { id } = req.params;
   const db = dbService.getDbServiceInstance();
 
@@ -156,7 +161,7 @@ app.get("/produk/edit/:id",checkAuthenticated, (req, res) => {
     });
 });
 
-app.post("/produk/update/:id", checkAuthenticated,(req, res) => {
+app.post("/produk/update/:id", checkAuthenticated, mustAdmin, (req, res) => {
   const { id } = req.params;
   const { namaproduk, stock, hargasatuan } = req.body;
   const db = dbService.getDbServiceInstance();
@@ -169,7 +174,7 @@ app.post("/produk/update/:id", checkAuthenticated,(req, res) => {
     });
 });
 
-app.post("/produk/delete/:id",checkAuthenticated, (req, res) => {
+app.post("/produk/delete/:id", checkAuthenticated, mustAdmin, (req, res) => {
   const { id } = req.params;
   const db = dbService.getDbServiceInstance();
 
@@ -179,7 +184,7 @@ app.post("/produk/delete/:id",checkAuthenticated, (req, res) => {
 });
 
 //Transaksi
-app.get("/transaksi",checkAuthenticated, (req, res) => {
+app.get("/transaksi", checkAuthenticated, (req, res) => {
   const db = dbService.getDbServiceInstance();
 
   db.getAllTransaksi()
@@ -237,7 +242,7 @@ app.get("/transaksi",checkAuthenticated, (req, res) => {
     });
 });
 
-app.post("/transaksi/insert",checkAuthenticated, (req, res) => {
+app.post("/transaksi/insert", checkAuthenticated, (req, res) => {
   const { id_produk, quantity, tanggal, id_karyawan } = req.body;
   console.log(req.body);
 
@@ -275,7 +280,7 @@ app.post("/transaksi/insert",checkAuthenticated, (req, res) => {
 //     });
 // });
 
-app.get("/karyawan",checkAuthenticated, (req, res) => {
+app.get("/karyawan", checkAuthenticated, mustAdmin, (req, res) => {
   const db = dbService.getDbServiceInstance();
 
   db.getAllKaryawan()
@@ -292,7 +297,7 @@ app.get("/karyawan",checkAuthenticated, (req, res) => {
     });
 });
 
-app.post("/karyawan/insert",checkAuthenticated, (req, res) => {
+app.post("/karyawan/insert", checkAuthenticated, mustAdmin, (req, res) => {
   const { nama_karyawan, tgl_lahir, jenis_kelamin, alamat, noTlp } = req.body;
   const db = dbService.getDbServiceInstance();
 
@@ -310,7 +315,7 @@ app.post("/karyawan/insert",checkAuthenticated, (req, res) => {
     });
 });
 
-app.get("/karyawan/edit/:id",checkAuthenticated, (req, res) => {
+app.get("/karyawan/edit/:id", checkAuthenticated, mustAdmin, (req, res) => {
   const { id } = req.params;
   const db = dbService.getDbServiceInstance();
 
@@ -328,12 +333,19 @@ app.get("/karyawan/edit/:id",checkAuthenticated, (req, res) => {
     });
 });
 
-app.post("/karyawan/update/:id",checkAuthenticated, (req, res) => {
+app.post("/karyawan/update/:id", checkAuthenticated, mustAdmin, (req, res) => {
   const { id } = req.params;
   const { nama_karyawan, tgl_lahir, jenis_kelamin, alamat, noTlp } = req.body;
   const db = dbService.getDbServiceInstance();
 
-  db.updateKaryawanById(id, nama_karyawan, tgl_lahir, jenis_kelamin, alamat, noTlp)
+  db.updateKaryawanById(
+    id,
+    nama_karyawan,
+    tgl_lahir,
+    jenis_kelamin,
+    alamat,
+    noTlp
+  )
     .then(res.redirect("/karyawan"))
     .catch((err) => {
       console.log(err);
@@ -341,7 +353,7 @@ app.post("/karyawan/update/:id",checkAuthenticated, (req, res) => {
     });
 });
 
-app.post("/karyawan/delete/:id",checkAuthenticated, (req, res) => {
+app.post("/karyawan/delete/:id", checkAuthenticated, mustAdmin, (req, res) => {
   const { id } = req.params;
   const db = dbService.getDbServiceInstance();
 
@@ -350,7 +362,7 @@ app.post("/karyawan/delete/:id",checkAuthenticated, (req, res) => {
   result.then(res.redirect("/karyawan")).catch((err) => console.log(err));
 });
 
-app.get("/investor", checkAuthenticated,(req, res) => {
+app.get("/investor", checkAuthenticated, mustAdmin, (req, res) => {
   const db = dbService.getDbServiceInstance();
 
   db.getAllInvestor()
@@ -367,7 +379,7 @@ app.get("/investor", checkAuthenticated,(req, res) => {
     });
 });
 
-app.post("/investor/insert", checkAuthenticated,(req, res) => {
+app.post("/investor/insert", checkAuthenticated, mustAdmin, (req, res) => {
   const { nama, jumlah } = req.body;
   const db = dbService.getDbServiceInstance();
 
@@ -385,7 +397,7 @@ app.post("/investor/insert", checkAuthenticated,(req, res) => {
     });
 });
 
-app.get("/investor/edit/:id", checkAuthenticated,(req, res) => {
+app.get("/investor/edit/:id", checkAuthenticated, mustAdmin, (req, res) => {
   const { id } = req.params;
   const db = dbService.getDbServiceInstance();
 
@@ -403,7 +415,7 @@ app.get("/investor/edit/:id", checkAuthenticated,(req, res) => {
     });
 });
 
-app.post("/investor/update/:id", checkAuthenticated,(req, res) => {
+app.post("/investor/update/:id", checkAuthenticated, mustAdmin, (req, res) => {
   const { id } = req.params;
   const { nama, jumlah } = req.body;
   const db = dbService.getDbServiceInstance();
@@ -416,7 +428,7 @@ app.post("/investor/update/:id", checkAuthenticated,(req, res) => {
     });
 });
 
-app.post("/investor/delete/:id",checkAuthenticated, (req, res) => {
+app.post("/investor/delete/:id", checkAuthenticated, mustAdmin, (req, res) => {
   const { id } = req.params;
   const db = dbService.getDbServiceInstance();
 
@@ -425,7 +437,7 @@ app.post("/investor/delete/:id",checkAuthenticated, (req, res) => {
   result.then(res.redirect("/investor")).catch((err) => console.log(err));
 });
 
-app.get("/user", checkAuthenticated,(req, res) => {
+app.get("/user", checkAuthenticated, (req, res) => {
   const db = dbService.getDbServiceInstance();
 
   db.getAllUser()
@@ -442,7 +454,7 @@ app.get("/user", checkAuthenticated,(req, res) => {
     });
 });
 
-app.post("/user/insert", checkAuthenticated,(req, res) => {
+app.post("/user/insert", checkAuthenticated, (req, res) => {
   const { nama, username, password, kontak, role } = req.body;
   const db = dbService.getDbServiceInstance();
 
@@ -460,7 +472,7 @@ app.post("/user/insert", checkAuthenticated,(req, res) => {
     });
 });
 
-app.get("/user/edit/:id", checkAuthenticated,(req, res) => {
+app.get("/user/edit/:id", checkAuthenticated, (req, res) => {
   const { id } = req.params;
   const db = dbService.getDbServiceInstance();
 
@@ -478,7 +490,7 @@ app.get("/user/edit/:id", checkAuthenticated,(req, res) => {
     });
 });
 
-app.post("/user/update/:id",checkAuthenticated, (req, res) => {
+app.post("/user/update/:id", checkAuthenticated, (req, res) => {
   const { id } = req.params;
   const { nama, username, password, kontak, role } = req.body;
   const db = dbService.getDbServiceInstance();
@@ -491,7 +503,7 @@ app.post("/user/update/:id",checkAuthenticated, (req, res) => {
     });
 });
 
-app.post("/user/delete/:id",checkAuthenticated, (req, res) => {
+app.post("/user/delete/:id", checkAuthenticated, (req, res) => {
   const { id } = req.params;
   const db = dbService.getDbServiceInstance();
 
@@ -500,7 +512,7 @@ app.post("/user/delete/:id",checkAuthenticated, (req, res) => {
   result.then(res.redirect("/user")).catch((err) => console.log(err));
 });
 
-app.get("/api/total-user", checkAuthenticated,(req, res) => {
+app.get("/api/total-user", checkAuthenticated, (req, res) => {
   const db = dbService.getDbServiceInstance();
 
   db.TotalUser()
@@ -513,7 +525,7 @@ app.get("/api/total-user", checkAuthenticated,(req, res) => {
     });
 });
 
-app.get("/api/total-produk", checkAuthenticated,(req, res) => {
+app.get("/api/total-produk", checkAuthenticated, (req, res) => {
   const db = dbService.getDbServiceInstance();
 
   db.TotalProduk()
@@ -526,7 +538,7 @@ app.get("/api/total-produk", checkAuthenticated,(req, res) => {
     });
 });
 
-app.get("/api/total-karyawan",checkAuthenticated, (req, res) => {
+app.get("/api/total-karyawan", checkAuthenticated, (req, res) => {
   const db = dbService.getDbServiceInstance();
 
   db.TotalKaryawan()
@@ -539,7 +551,7 @@ app.get("/api/total-karyawan",checkAuthenticated, (req, res) => {
     });
 });
 
-app.get("/api/total-transaksi",checkAuthenticated, (req, res) => {
+app.get("/api/total-transaksi", checkAuthenticated, (req, res) => {
   const db = dbService.getDbServiceInstance();
 
   db.TotalTransaksi()

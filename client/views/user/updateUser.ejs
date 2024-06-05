@@ -1,128 +1,106 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="/css/bootstrap.css" />
-    <title>Update Produk</title>
-  </head>
-  <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-warning">
-      <div class="container-fluid">
-        <!-- Brand/logo -->
-        <a class="navbar-brand" href="/">Dashboard</a>
-        <!-- Toggler/collapsibe Button -->
-        <button
-          class="navbar-toggler"
-          type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#navbarSupportedContent"
-          aria-controls="navbarSupportedContent"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
+<%- include('../navbar/navbar') %>
+
+<div class="container mb-5">
+  <div class="card mt-3 mb-3">
+    <div class="card shadow-mb4">
+      <div class="card-header bg-warning text-light"><h4>Produk</h4></div>
+      <div class="card-body">
+        <form
+          action="/user/update/<%= user.id %>"
+          method="post"
+          id="form-produk"
         >
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <!-- Navbar links -->
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-            <li class="nav-item">
-              <a class="nav-link" aria-current="page" href="/home">Home</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="/produk">Produk</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="/transaksi">Transaksi</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="/karyawan">Karyawan</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="/investor">Investor</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link active" href="/user">User</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="/logout">logout</a>
-            </li>
-            <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false"> Dropdown </a>
-              <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <li><a class="dropdown-item" href="#">Action</a></li>
-                <li><a class="dropdown-item" href="#">Another action</a></li>
-                <li><hr class="dropdown-divider" /></li>
-                <li><a class="dropdown-item" href="#">Something else here</a></li>
-              </ul>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </nav>
-    <div class="container mb-5">
-      <div class="card mt-3 mb-3">
-        <div class="card shadow-mb4">
-          <div class="card-header bg-warning text-light"><h4>Produk</h4></div>
-          <div class="card-body">
-            <form action="/user/update/<%= user.id %>" method="post" id="form-produk">
-              <div class="row mb-3">
-                <!-- <div class="col-md-3">
+          <div class="row mb-3">
+            <!-- <div class="col-md-3">
                   <label for="">ID produk</label>
                 </div> -->
-                <div class="col-md-8">
-                  <input type="hidden" name="id" id="id" class="form-control" value="<%= user.id %>" readonly />
-                </div>
-              </div>
-              <div class="row mb-3">
-                <div class="col-md-3">
-                  <label for="">Nama</label>
-                </div>
-                <div class="col-md-8">
-                  <input type="text" name="nama" id="nama" class="form-control" value="<%= user.nama %>" />
-                </div>
-              </div>
-              <div class="row mb-3">
-                <div class="col-md-3">
-                  <label for="">username </label>
-                </div>
-                <div class="col-md-8">
-                  <input type="number " name="username" id="username" class="form-control" value="<%= user.username %>" />
-                </div>
-              </div>
-              <div class="row mb-3">
-                <div class="col-md-3 mb-3">
-                  <label for="">Password</label>
-                </div>
-                <div class="col-md-8">
-                  <input type="text" name="password" id="password" class="form-control" value="<%= user.password %>" />
-                </div>
-              </div>
-              <div class="row mb-3">
-                <div class="col-md-3 mb-3">
-                  <label for="">Kontak</label>
-                </div>
-                <div class="col-md-8">
-                  <input type="text" name="kontak" id="kontak" class="form-control" value="<%= user.kontak %>" />
-                </div>
-              </div>
-              <div class="row mb-3">
-                <div class="col-md-3 mb-3">
-                  <label for="">Role</label>
-                </div>
-                <div class="col-md-8">
-                  <select name="role" id="role" class="form-select">
-                    <option value="">Pilih Role</option>
-                    <option value="admin">Admin</option>
-                    <option value="karyawan">karyawan</option>
-                  </select>
-                </div>
-              </div>
-              <input type="submit" name="submit" id="btn-add" class="btn btn-primary" />
-            </form>
+            <div class="col-md-8">
+              <input
+                type="hidden"
+                name="id"
+                id="id"
+                class="form-control"
+                value="<%= user.id %>"
+                readonly
+              />
+            </div>
           </div>
-        </div>
+          <div class="row mb-3">
+            <div class="col-md-3">
+              <label for="">Nama</label>
+            </div>
+            <div class="col-md-8">
+              <input
+                type="text"
+                name="nama"
+                id="nama"
+                class="form-control"
+                value="<%= user.nama %>"
+              />
+            </div>
+          </div>
+          <div class="row mb-3">
+            <div class="col-md-3">
+              <label for="">username </label>
+            </div>
+            <div class="col-md-8">
+              <input
+                type="number "
+                name="username"
+                id="username"
+                class="form-control"
+                value="<%= user.username %>"
+              />
+            </div>
+          </div>
+          <div class="row mb-3">
+            <div class="col-md-3 mb-3">
+              <label for="">Password</label>
+            </div>
+            <div class="col-md-8">
+              <input
+                type="text"
+                name="password"
+                id="password"
+                class="form-control"
+                value="<%= user.password %>"
+              />
+            </div>
+          </div>
+          <div class="row mb-3">
+            <div class="col-md-3 mb-3">
+              <label for="">Kontak</label>
+            </div>
+            <div class="col-md-8">
+              <input
+                type="text"
+                name="kontak"
+                id="kontak"
+                class="form-control"
+                value="<%= user.kontak %>"
+              />
+            </div>
+          </div>
+          <div class="row mb-3">
+            <div class="col-md-3 mb-3">
+              <label for="">Role</label>
+            </div>
+            <div class="col-md-8">
+              <select name="role" id="role" class="form-select">
+                <option value="">Pilih Role</option>
+                <option value="admin">Admin</option>
+                <option value="karyawan">karyawan</option>
+              </select>
+            </div>
+          </div>
+          <input
+            type="submit"
+            name="submit"
+            id="btn-add"
+            class="btn btn-primary"
+          />
+        </form>
       </div>
     </div>
-  </body>
-</html>
+  </div>
+</div>

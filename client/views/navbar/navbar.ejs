@@ -31,7 +31,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/transaksi">Transaksi</a>
             </li>
-            <% if (user.role === "admin") { %>
+            <% if (role === "admin") { %>
             <li class="nav-item">
               <a class="nav-link" href="/produk">Produk</a>
             </li>
@@ -42,9 +42,9 @@
               <a class="nav-link" href="/investor">Investor</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link active" href="/user">User</a>
+              <a class="nav-link" href="/user">User</a>
             </li>
-            <% } %>
+            <% }; %>
             <li class="nav-item">
               <a class="nav-link" href="/logout">logout</a>
             </li>

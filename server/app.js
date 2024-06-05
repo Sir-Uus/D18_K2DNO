@@ -53,7 +53,11 @@ app.use(
 );
 
 app.use((req, res, next) => {
-  req.user = { role: "admin" };
+  if (req.session.user && req.session.user.role) {
+    req.user = { role: req.session.user.role };
+  } else {
+    req.user = { role: "defaultRole" };
+  }
   next();
 });
 
@@ -89,6 +93,7 @@ app.post("/login", async (req, res) => {
           return res.status(500).send("Session save error");
         }
         res.redirect("/dashboard");
+        console.log(req.session);
       });
     });
   } else {
@@ -104,17 +109,20 @@ app.get("/logout", (req, res) => {
 
 // dashboard
 app.get("/dashboard", checkAuthenticated, (req, res) => {
-  res.render("dashboard/index", { user: req.session.user });
+  var userRole = req.session.user.role;
+  res.render("dashboard/index", { role: userRole });
 });
 
 //HOME
 app.get("/home", checkAuthenticated, (req, res) => {
-  res.render("home/index", {user: req.user});
+  var userRole = req.session.user.role;
+  res.render("home/index", { role: userRole });
 });
 
 // PRODUK Table
 app.get("/produk", checkAuthenticated, mustAdmin, (req, res) => {
   const db = dbService.getDbServiceInstance();
+  var userRole = req.session.user.role;
 
   db.getAllProduk()
     .then((data) => {
@@ -122,7 +130,7 @@ app.get("/produk", checkAuthenticated, mustAdmin, (req, res) => {
         console.log("Error:", data);
         data = [];
       }
-      res.render("produk/indexProduk", { myProduk: data, user: req.user });
+      res.render("produk/indexProduk", { myProduk: data, role: userRole });
     })
     .catch((err) => {
       console.log(err);
@@ -191,6 +199,7 @@ app.post("/produk/delete/:id", checkAuthenticated, mustAdmin, (req, res) => {
 //Transaksi
 app.get("/transaksi", checkAuthenticated, (req, res) => {
   const db = dbService.getDbServiceInstance();
+  var userRole = req.session.user.role;
 
   db.getAllTransaksi()
     .then((dataTransaksi) => {
@@ -217,7 +226,7 @@ app.get("/transaksi", checkAuthenticated, (req, res) => {
                 transaksi: dataTransaksi,
                 produk: dataProduk,
                 karyawan: dataKaryawan,
-                user: req.user
+                role: userRole,
               });
             })
             .catch((err) => {
@@ -288,6 +297,7 @@ app.post("/transaksi/insert", checkAuthenticated, (req, res) => {
 
 app.get("/karyawan", checkAuthenticated, mustAdmin, (req, res) => {
   const db = dbService.getDbServiceInstance();
+  var userRole = req.session.user.role;
 
   db.getAllKaryawan()
     .then((data) => {
@@ -295,7 +305,7 @@ app.get("/karyawan", checkAuthenticated, mustAdmin, (req, res) => {
         console.log("Error:", data);
         data = [];
       }
-      res.render("karyawan/indexKaryawan", { karyawans: data, user: req.user });
+      res.render("karyawan/indexKaryawan", { karyawans: data, role: userRole });
     })
     .catch((err) => {
       console.log(err);
@@ -344,14 +354,7 @@ app.post("/karyawan/update/:id", checkAuthenticated, mustAdmin, (req, res) => {
   const { nama_karyawan, tgl_lahir, jenis_kelamin, alamat, noTlp } = req.body;
   const db = dbService.getDbServiceInstance();
 
-  db.updateKaryawanById(
-    id,
-    nama_karyawan,
-    tgl_lahir,
-    jenis_kelamin,
-    alamat,
-    noTlp
-  )
+  db.updateKaryawanById(id, nama_karyawan, tgl_lahir, jenis_kelamin, alamat, noTlp)
     .then(res.redirect("/karyawan"))
     .catch((err) => {
       console.log(err);
@@ -370,6 +373,7 @@ app.post("/karyawan/delete/:id", checkAuthenticated, mustAdmin, (req, res) => {
 
 app.get("/investor", checkAuthenticated, mustAdmin, (req, res) => {
   const db = dbService.getDbServiceInstance();
+  var userRole = req.session.user.role;
 
   db.getAllInvestor()
     .then((data) => {
@@ -377,7 +381,7 @@ app.get("/investor", checkAuthenticated, mustAdmin, (req, res) => {
         console.log("Error:", data);
         data = [];
       }
-      res.render("investor/indexInvestor", { investors: data, user: req.user });
+      res.render("investor/indexInvestor", { investors: data, role: userRole });
     })
     .catch((err) => {
       console.log(err);
@@ -445,6 +449,7 @@ app.post("/investor/delete/:id", checkAuthenticated, mustAdmin, (req, res) => {
 
 app.get("/user", checkAuthenticated, (req, res) => {
   const db = dbService.getDbServiceInstance();
+  var userRole = req.session.user.role;
 
   db.getAllUser()
     .then((data) => {
@@ -452,7 +457,7 @@ app.get("/user", checkAuthenticated, (req, res) => {
         console.log("Error:", data);
         data = [];
       }
-      res.render("user/indexUser", { users: data, user: req.user });
+      res.render("user/indexUser", { users: data, role: userRole });
     })
     .catch((err) => {
       console.log(err);
